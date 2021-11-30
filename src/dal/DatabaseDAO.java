@@ -19,7 +19,7 @@ public class DatabaseDAO
         dataSource.setPassword("Rackreaver");
         dataSource.setPortNumber(1433);
     }
-//Creating a connection to the database
+    //Creating a connection to the database
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
     }
