@@ -7,15 +7,15 @@ public class Song {
     private String title;
     private String artist;
     private String genre;
-    private String location;
+    private String destination;
 
-    public Song(int playtime, int ID, String title, String artist, String genre, String location) {
+    public Song(int playtime, int ID, String title, String artist, String genre, String destination) {
         this.playtime = playtime;
         this.ID = ID;
         this.title = title;
         this.artist = artist;
         this.genre = genre;
-        this.location = location;
+        this.destination = destination;
     }
 
     public int getPlaytime() {
@@ -38,8 +38,8 @@ public class Song {
         return genre;
     }
 
-    public String getLocation() {
-        return location;
+    public String getDestination() {
+        return destination;
     }
 
     public void setTitle(String title) {
@@ -54,8 +54,8 @@ public class Song {
         this.genre = genre;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 }
 
