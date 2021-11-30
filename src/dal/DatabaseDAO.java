@@ -14,8 +14,8 @@ public class DatabaseDAO
     public DatabaseDAO() {
         dataSource = new SQLServerDataSource();
         dataSource.setServerName("10.176.111.31");
-        dataSource.setDatabaseName("MyTunes2021");
-        dataSource.setUser("CSe20A_22");
+        dataSource.setDatabaseName("VoresMyTunesDatabase");
+        dataSource.setUser("CSe21A_22");
         dataSource.setPassword("Rackreaver");
         dataSource.setPortNumber(1433);
     }
