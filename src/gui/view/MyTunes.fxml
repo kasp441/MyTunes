@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="582.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
    <children>
@@ -24,7 +24,7 @@
       <Button layoutX="145.0" layoutY="510.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="85.0" layoutY="510.0" mnemonicParsing="false" text="Edit" />
       <Button layoutX="23.0" layoutY="510.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="313.0" layoutY="510.0" mnemonicParsing="false" text="Down" />
+      <Button layoutX="296.0" layoutY="510.0" mnemonicParsing="false" text="Down" />
       <Button layoutX="261.0" layoutY="510.0" mnemonicParsing="false" text="Up" />
       <ListView layoutX="260.0" layoutY="143.0" prefHeight="351.0" prefWidth="162.0" />
       <TableView layoutX="523.0" layoutY="143.0" prefHeight="351.0" prefWidth="354.0">
@@ -48,5 +48,14 @@
             <Button mnemonicParsing="false" text="Skip" />
          </buttons>
       </ButtonBar>
+      <Label layoutX="379.0" layoutY="57.0" text="(None)...is playing">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="832.0" layoutY="510.0" mnemonicParsing="false" text="Close" />
+      <Button layoutX="655.0" layoutY="510.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="595.0" layoutY="510.0" mnemonicParsing="false" text="Edit" />
+      <Button layoutX="533.0" layoutY="510.0" mnemonicParsing="false" text="New" />
    </children>
 </AnchorPane>
