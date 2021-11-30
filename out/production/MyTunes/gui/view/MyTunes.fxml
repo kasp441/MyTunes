@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="582.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
+<AnchorPane prefHeight="582.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
    <children>
       <Slider layoutX="93.0" layoutY="70.0" />
       <TableView layoutX="14.0" layoutY="143.0" prefHeight="351.0" prefWidth="225.0">
@@ -24,22 +24,22 @@
       <Button layoutX="145.0" layoutY="510.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="85.0" layoutY="510.0" mnemonicParsing="false" text="Edit" />
       <Button layoutX="23.0" layoutY="510.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="316.0" layoutY="510.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="261.0" layoutY="510.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="313.0" layoutY="510.0" mnemonicParsing="false" text="Down" />
+      <Button layoutX="261.0" layoutY="510.0" mnemonicParsing="false" text="Up" />
       <ListView layoutX="260.0" layoutY="143.0" prefHeight="351.0" prefWidth="162.0" />
-      <TableView layoutX="523.0" layoutY="143.0" prefHeight="351.0" prefWidth="311.0">
+      <TableView layoutX="523.0" layoutY="143.0" prefHeight="351.0" prefWidth="354.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Title" />
-          <TableColumn prefWidth="75.0" text="Artist" />
-            <TableColumn prefWidth="75.0" text="catagory" />
-            <TableColumn prefWidth="75.0" text="Time" />
+          <TableColumn prefWidth="120.0" text="Title" />
+          <TableColumn prefWidth="84.80010986328125" text="Artist" />
+            <TableColumn prefWidth="79.9998779296875" text="catagory" />
+            <TableColumn prefWidth="69.5999755859375" text="Time" />
         </columns>
       </TableView>
       <Label layoutX="268.0" layoutY="121.0" text="Songs on playlist" />
       <TextField layoutX="620.0" layoutY="44.0" />
       <Button layoutX="780.0" layoutY="44.0" mnemonicParsing="false" text="Filter" />
       <Button layoutX="442.0" layoutY="180.0" mnemonicParsing="false" text="Add song" />
-      <Button layoutX="380.0" layoutY="510.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="371.0" layoutY="510.0" mnemonicParsing="false" text="Delete" />
       <Label layoutX="29.0" layoutY="121.0" text="Playlists" />
       <ButtonBar layoutX="29.0" layoutY="24.0" prefHeight="40.0" prefWidth="200.0">
          <buttons>
