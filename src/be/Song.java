@@ -9,7 +9,7 @@ public class Song {
     private String genre;
     private String destination;
 
-    public Song(int playtime, int ID, String title, String artist, String genre, String destination) {
+    public Song(int ID, String title, String artist, String genre, String destination,int playtime) {
         this.playtime = playtime;
         this.ID = ID;
         this.title = title;
@@ -56,6 +56,18 @@ public class Song {
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "playtime=" + playtime +
+                ", ID=" + ID +
+                ", title='" + title + '\'' +
+                ", artist='" + artist + '\'' +
+                ", genre='" + genre + '\'' +
+                ", destination='" + destination + '\'' +
+                '}';
     }
 }
 
