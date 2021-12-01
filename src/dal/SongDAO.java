@@ -1,8 +1,6 @@
 package dal;
 
 import be.Song;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,13 +61,29 @@ public class SongDAO {
             ps.executeBatch();
         }
         return new Song(newestID,title,artist,genre,destination,playtime);
-
     }
+
+    public void deleteSong(Song songDelete) {
+        try (Connection connection = databaseConnector.getConnection()) {
+            String sql = "DELETE from Song WHERE ID = ?";
+            PreparedStatement preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.setString(1, Integer.toString(songDelete.getID()));
+            preparedStmt.execute();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
 
     public static void main(String[] args) throws IOException, SQLException {
         SongDAO songDAO = new SongDAO();
+       // songDAO.createSong("another test2","testman","experimental",420,"/data??");
+
+        /*
         List<Song> allsongs = songDAO.getAllSongs();
-        System.out.println(allsongs.size());
+        songDAO.deleteSong(allsongs.get(4));
+        */
+
     }
 
 }
