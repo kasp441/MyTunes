@@ -34,19 +34,4 @@ public class PlaylistDAO {
         }
         return allPlaylists;
     }
-
-    public Playlist createPlaylist(String name) {
-        String sql = "INSERT INTO Playlist(name) VALUES (?)";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement prepStatement = connection.prepareStatement(sql);
-            prepStatement.setString(1, name);
-            prepStatement.addBatch();
-            prepStatement.executeBatch();
-        }catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        Playlist playlist = new Playlist(0, name);
-        return playlist;
-    }
-
 }
