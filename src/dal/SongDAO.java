@@ -63,6 +63,23 @@ public class SongDAO {
         return new Song(newestID,title,artist,genre,destination,playtime);
     }
 
+    public void updateSong(Song songUpdate) throws SQLException{
+        try(Connection connection = databaseConnector.getConnection()){
+            String sql = "UPDATE SONG SET Title=?, Artist=?, Genre=?, Playtime=?,Destination=?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, songUpdate.getTitle());
+            preparedStatement.setString(2, songUpdate.getArtist());
+            preparedStatement.setString(3, songUpdate.getGenre());
+            preparedStatement.setInt(4, songUpdate.getPlaytime());
+            preparedStatement.setString(5, songUpdate.getDestination());
+            if (preparedStatement.executeUpdate() != 1) {
+                throw new Exception("Could not update song");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+    }
+}
+
     public void deleteSong(Song songDelete) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "DELETE from Song WHERE ID = ?";
