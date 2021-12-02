@@ -27,7 +27,7 @@
       <Button layoutX="304.0" layoutY="504.0" mnemonicParsing="false" onAction="#DownButton" text="Down" />
       <Button layoutX="260.0" layoutY="504.0" mnemonicParsing="false" onAction="#UpButton" text="Up" />
       <ListView layoutX="260.0" layoutY="143.0" prefHeight="351.0" prefWidth="162.0" />
-      <TableView fx:id="TVSongs" layoutX="506.0" layoutY="143.0" prefHeight="351.0" prefWidth="371.0">
+      <TableView fx:id="TVSongs" layoutX="506.0" layoutY="143.0" onMouseClicked="#getClickedSong" prefHeight="351.0" prefWidth="371.0">
         <columns>
           <TableColumn fx:id="songTitle" prefWidth="120.0" text="Title" />
           <TableColumn fx:id="songArtist" prefWidth="103.0" text="Artist" />
@@ -48,7 +48,7 @@
             <Button mnemonicParsing="false" onAction="#SkipButton" text="Skip" />
          </buttons>
       </ButtonBar>
-      <Label layoutX="379.0" layoutY="57.0" text="(none) ... is playing">
+      <Label fx:id="currentlyPlayingLabel" layoutX="379.0" layoutY="57.0" text="(none) ... is playing">
          <font>
             <Font size="16.0" />
          </font>
