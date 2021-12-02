@@ -65,7 +65,7 @@ public class SongDAO {
 
     public void updateSong(Song songUpdate) throws SQLException{
         try(Connection connection = databaseConnector.getConnection()){
-            String sql = "UPDATE SONG SET Title=?, Artist=?, Genre=?, Playtime=?,Destination=?;";
+            String sql = "UPDATE Song SET Title=?, Artist=?, Genre=?, Playtime=?,Destination=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, songUpdate.getTitle());
             preparedStatement.setString(2, songUpdate.getArtist());
