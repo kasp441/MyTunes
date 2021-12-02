@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -21,18 +22,18 @@ public class MyTunesController {
     public TableColumn<Song, String> songCategory;
     public TableColumn<Song, Integer> songTime;
     public Label currentlyPlayingLabel;
-    SongModel songModel;
+    private SongModel songModel;
 
     public TableView<be.Song> TVSongs;
 
     boolean playing;
     MediaPlayer player;
+    int currentSongIndex;
 
     public MyTunesController() throws IOException {
         songModel = new SongModel();
-        playing = false;
-    }
 
+    }
 
     public void initialize() {
         songTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -84,35 +85,42 @@ public class MyTunesController {
 
     public void BackButton(ActionEvent actionEvent)
     {
+        player.stop();
+        currentSongIndex--;
+        playMusic();
+    }
 
+    public void SkipButton(ActionEvent actionEvent)
+    {
+        player.stop();
+        currentSongIndex++;
+        playMusic();
     }
 
     public void PlayPauseButton(ActionEvent actionEvent)
     {
         if (!playing){
             playMusic();
-            playing = true;
         }else{
             player.stop();
             playing = false;
+            currentlyPlayingLabel.setText("(none)... is playing");
         }
     }
 
     private void playMusic(){
-        Song selectedSong = TVSongs.getSelectionModel().getSelectedItem();
-        String path = selectedSong.getDestination();
+        playing = true;
+        Song currentSong = TVSongs.getItems().get(currentSongIndex);
+        String path = currentSong.getDestination();
         File file = new File(path);
         Media media = new Media(file.toURI().toString());
         player = new MediaPlayer(media);
-
-        currentlyPlayingLabel.setText(selectedSong.getTitle());
+        currentlyPlayingLabel.setText(currentSong.getTitle());
         player.play();
     }
 
-
-    public void SkipButton(ActionEvent actionEvent)
-    {
-
+    public void getClickedSong(MouseEvent mouseEvent) {
+        currentSongIndex = TVSongs.getSelectionModel().getSelectedIndex();
     }
 
     public void CloseApplicationButton(ActionEvent actionEvent)
@@ -134,7 +142,6 @@ public class MyTunesController {
     {
 
     }
-
 
 
 
