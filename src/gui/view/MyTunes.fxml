@@ -48,7 +48,7 @@
             <Button mnemonicParsing="false" onAction="#SkipButton" text="Skip" />
          </buttons>
       </ButtonBar>
-      <Label layoutX="379.0" layoutY="57.0" text="(none) ... is playing">
+      <Label fx:id="currentlyPlayingLabel" layoutX="379.0" layoutY="57.0" text="(none) ... is playing">
          <font>
             <Font size="16.0" />
          </font>

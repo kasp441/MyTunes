@@ -95,14 +95,17 @@ public class SongDAO {
 
     public static void main(String[] args) throws IOException, SQLException {
         SongDAO songDAO = new SongDAO();
-       // songDAO.createSong("another test2","testman","experimental",420,"/data??");
-
-        Song newSong = new Song(5, "RackreaverTrack","Kasper","Emo","whatever",5);
 
 
-        songDAO.updateSong(newSong);
-
-
+        //Test songs for database
+        /*
+        songDAO.createSong("Adventures-Argofox","A-Himitsu","experimental",420,"data/A-Himitsu-Adventures-Argofox.mp3");
+        songDAO.createSong("A new beginning","bensound","experimental",420,"data/bensound-anewbeginning.wav");
+        songDAO.createSong("creativeminds","bensound","experimental",420,"data/bensound-creativeminds.wav");
+        songDAO.createSong("memories","bensound","experimental",420,"data/bensound-memories.wav");
+        songDAO.createSong("Into-Oblivion","Darren Curtis","experimental",420,"data/Into-Oblivion.mp3");
+        songDAO.createSong("jingle-bells-violin-main","GoodBMusic","experimental",420,"data/jingle-bells-violin-main.mp3");
+         */
     }
 
 }
