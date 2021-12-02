@@ -25,7 +25,7 @@ public class MyTunesController {
     }
 
 
-    public void initialize(){
+    public void initialize() {
         songTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         songArtist.setCellValueFactory(new PropertyValueFactory<>("artist"));
         songCategory.setCellValueFactory(new PropertyValueFactory<>("genre"));
