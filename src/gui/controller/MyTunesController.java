@@ -32,6 +32,7 @@ public class MyTunesController {
 
     public MyTunesController() throws IOException {
         songModel = new SongModel();
+        currentSongIndex = 0;
 
     }
 
@@ -85,16 +86,28 @@ public class MyTunesController {
 
     public void BackButton(ActionEvent actionEvent)
     {
-        player.stop();
         currentSongIndex--;
-        playMusic();
+        if (currentSongIndex >= 0){
+            player.stop();
+            playMusic();
+        }
+        else{
+            currentSongIndex++;
+        }
+
+
     }
 
     public void SkipButton(ActionEvent actionEvent)
     {
-        player.stop();
         currentSongIndex++;
-        playMusic();
+        if (currentSongIndex <= TVSongs.getItems().size()-1){
+            player.stop();
+            playMusic();
+        }
+        else{
+            currentSongIndex--;
+        }
     }
 
     public void PlayPauseButton(ActionEvent actionEvent)
