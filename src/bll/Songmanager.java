@@ -5,6 +5,7 @@ import dal.SongDAO;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Songmanager {
@@ -25,4 +26,16 @@ public class Songmanager {
             return filter.searchSong(songList, keyChar);
         }
 
+    public void createSong(String title, String artist, String genre, int playtime, String destination) throws SQLException {
+            songDAO.createSong(title, artist, genre, playtime, destination);
     }
+
+    public void updateSong(Song songUpdate) throws SQLException{
+            songDAO.updateSong(songUpdate);
+    }
+
+    public void deleteSong(Song songDelete) {
+            songDAO.deleteSong(songDelete);
+    }
+
+}
