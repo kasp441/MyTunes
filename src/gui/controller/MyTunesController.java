@@ -92,7 +92,7 @@ public class MyTunesController {
             playMusic();
         }
         else{
-            currentSongIndex--;
+            currentSongIndex++;
         }
 
 
