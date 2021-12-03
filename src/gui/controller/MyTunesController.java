@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -22,6 +23,7 @@ public class MyTunesController {
     public TableColumn<Song, String> songCategory;
     public TableColumn<Song, Integer> songTime;
     public Label currentlyPlayingLabel;
+    public TextField filterInput;
     private SongModel songModel;
 
     public TableView<be.Song> TVSongs;
@@ -71,7 +73,8 @@ public class MyTunesController {
 
     public void FilterButton(ActionEvent actionEvent)
     {
-
+        songModel.searchSwitch(filterInput.toString());
+        TVSongs.refresh();
     }
 
     public void AddSongToPlaylistButton(ActionEvent actionEvent)

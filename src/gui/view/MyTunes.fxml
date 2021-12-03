@@ -36,7 +36,7 @@
         </columns>
       </TableView>
       <Label layoutX="259.0" layoutY="121.0" text="Songs on playlist" />
-      <TextField layoutX="620.0" layoutY="44.0" />
+      <TextField fx:id="filterInput" layoutX="620.0" layoutY="44.0" />
       <Button layoutX="780.0" layoutY="44.0" mnemonicParsing="false" onAction="#FilterButton" text="Filter" />
       <Button layoutX="431.0" layoutY="143.0" mnemonicParsing="false" onAction="#AddSongToPlaylistButton" text="Add song" />
       <Button layoutX="371.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeleteSongFromPlaylistButton" text="Delete" />

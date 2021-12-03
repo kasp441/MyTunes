@@ -24,4 +24,11 @@ public class SongModel {
         return songsToBeViewed;
     }
 
+    public void searchSwitch(String keyChar)
+    {
+        ObservableList<Song> result = songmanager.getSearchedSong(songsToBeViewed, keyChar);
+        songsToBeViewed.clear();
+        songsToBeViewed.addAll(result);
+    }
+
 }
