@@ -2,11 +2,10 @@ package gui.controller;
 
 import be.Song;
 import gui.model.SongModel;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -24,6 +23,7 @@ public class MyTunesController {
     public TableColumn<Song, Integer> songTime;
     public Label currentlyPlayingLabel;
     public TextField filterInput;
+    public Slider volumeSlider;
     private SongModel songModel;
 
     public TableView<be.Song> TVSongs;
@@ -44,6 +44,8 @@ public class MyTunesController {
         songCategory.setCellValueFactory(new PropertyValueFactory<>("genre"));
         songTime.setCellValueFactory(new PropertyValueFactory<>("playtime"));
         TVSongs.setItems(songModel.getObservableSongs());
+
+        //Song search
         filterInput.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try{
                 songModel.searchSwitch(newValue);
@@ -51,6 +53,18 @@ public class MyTunesController {
                 e.printStackTrace();
             }
         });
+
+        //Volume slider
+        volumeSlider.setValue(50); //starting volume
+        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                player.setVolume(volumeSlider.getValue() / 100);
+            }
+        });
+
+
+
     }
 
     public void DeletePlaylistButton(ActionEvent actionEvent)
@@ -117,7 +131,7 @@ public class MyTunesController {
         if (!playing){
             playMusic();
         }else{
-            player.stop();
+            player.pause();
             playing = false;
             currentlyPlayingLabel.setText("(none)... is playing");
         }
@@ -130,6 +144,7 @@ public class MyTunesController {
         File file = new File(path);
         Media media = new Media(file.toURI().toString());
         player = new MediaPlayer(media);
+        player.setVolume(volumeSlider.getValue() / 100);
         currentlyPlayingLabel.setText(currentSong.getTitle());
         player.play();
     }
