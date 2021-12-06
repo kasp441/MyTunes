@@ -44,6 +44,13 @@ public class MyTunesController {
         songCategory.setCellValueFactory(new PropertyValueFactory<>("genre"));
         songTime.setCellValueFactory(new PropertyValueFactory<>("playtime"));
         TVSongs.setItems(songModel.getObservableSongs());
+        filterInput.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            try{
+                songModel.searchSwitch(newValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void DeletePlaylistButton(ActionEvent actionEvent)
@@ -69,12 +76,6 @@ public class MyTunesController {
     public void UpButton(ActionEvent actionEvent)
     {
 
-    }
-
-    public void FilterButton(ActionEvent actionEvent)
-    {
-        songModel.searchSwitch(filterInput.getText());
-        TVSongs.refresh();
     }
 
     public void AddSongToPlaylistButton(ActionEvent actionEvent)
