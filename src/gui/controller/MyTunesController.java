@@ -146,7 +146,9 @@ public class MyTunesController {
 
     public void DeleteSongButton(ActionEvent actionEvent)
     {
-
+        Song song = TVSongs.getSelectionModel().getSelectedItem();
+        songModel.deleteSong(song);
+        TVSongs.getItems().remove(song);
     }
 
     public void EditSongButton(ActionEvent actionEvent)

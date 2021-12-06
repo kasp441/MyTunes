@@ -38,14 +38,14 @@ public class PlaylistDAO {
         return allPlaylists;
     }
 
-    public Playlist createPlaylist(String playlistName, int totallenght, int totalsongs) throws SQLException {
+    public Playlist createPlaylist(String playlistName) throws SQLException {
         int newID = -1;
         String sql = "INSERT INTO Playlist(PlaylistName, Totallenght, TotalSongs) VALUES (?, ?, ?)";
         try(Connection connection = databaseConnector.getConnection()) {
             PreparedStatement prepstatement = connection.prepareStatement(sql);
             prepstatement.setString(1, playlistName);
-            prepstatement.setInt(2, totallenght);
-            prepstatement.setInt(3, totalsongs);
+            prepstatement.setInt(2, 0);
+            prepstatement.setInt(3, 0);
             prepstatement.addBatch();
             prepstatement.executeBatch();
 
@@ -57,7 +57,7 @@ public class PlaylistDAO {
             }
             prepstatement.executeBatch();
         }
-            return new Playlist(newID, playlistName, totallenght, totalsongs);
+            return new Playlist(newID, playlistName,0,0);
     }
     public void updatePlaylist(Playlist playlistUpdate) throws SQLException {
         try(Connection connection = databaseConnector.getConnection()) {
@@ -89,7 +89,7 @@ public class PlaylistDAO {
     public void addSongToPlaylist(int playlistId, int songId)
     {
         //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
-        String sql = "INSERT INTO PlaylistSong(playlistId, songId) VALUES (?, ?)";
+        String sql = "INSERT INTO PlaylistSongs(playlistId, songId) VALUES (?, ?)";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             //Sætter parametre
@@ -101,6 +101,11 @@ public class PlaylistDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+    }
+
+    public static void main(String[] args) throws IOException, SQLException {
+        PlaylistDAO playlistDAO = new PlaylistDAO();
+        playlistDAO.addSongToPlaylist(1, 42);
     }
 
 }

@@ -31,4 +31,7 @@ public class SongModel {
         songsToBeViewed.addAll(result);
     }
 
+    public void deleteSong(Song song) {
+        songmanager.deleteSong(song);
+    }
 }
