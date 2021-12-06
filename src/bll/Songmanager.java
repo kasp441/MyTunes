@@ -24,7 +24,7 @@ public class Songmanager {
         public List<Song> getAllSongs(){
             return songDAO.getAllSongs();
         }
-        public ObservableList<Song> getSearchedSong(ObservableList<Song> songList, String keyChar)
+        public List<Song> getSearchedSong(List<Song> songList, String keyChar)
         {
             return filter.searchSong(songList, keyChar);
         }

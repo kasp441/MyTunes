@@ -26,7 +26,8 @@ public class SongModel {
 
     public void searchSwitch(String keyChar)
     {
-        ObservableList<Song> result = songmanager.getSearchedSong(songsToBeViewed, keyChar);
+        List<Song> allSongs = songmanager.getAllSongs();
+        List<Song> result = songmanager.getSearchedSong(allSongs, keyChar);
         songsToBeViewed.clear();
         songsToBeViewed.addAll(result);
     }
@@ -34,4 +35,5 @@ public class SongModel {
     public void deleteSong(Song song) {
         songmanager.deleteSong(song);
     }
+
 }

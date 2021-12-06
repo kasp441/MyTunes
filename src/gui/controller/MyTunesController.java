@@ -73,7 +73,7 @@ public class MyTunesController {
 
     public void FilterButton(ActionEvent actionEvent)
     {
-        songModel.searchSwitch(filterInput.toString());
+        songModel.searchSwitch(filterInput.getText());
         TVSongs.refresh();
     }
 
