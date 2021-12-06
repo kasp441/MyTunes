@@ -97,8 +97,6 @@ public class MyTunesController {
         else{
             currentSongIndex++;
         }
-
-
     }
 
     public void SkipButton(ActionEvent actionEvent)
