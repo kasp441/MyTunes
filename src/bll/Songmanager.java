@@ -1,11 +1,14 @@
 package bll;
 
 import be.Song;
+import com.sun.jdi.connect.spi.TransportService;
 import dal.SongDAO;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.net.http.WebSocket;
 import java.sql.SQLException;
+import java.util.EventListener;
 import java.util.List;
 
 public class Songmanager {
@@ -37,5 +40,6 @@ public class Songmanager {
     public void deleteSong(Song songDelete) {
             songDAO.deleteSong(songDelete);
     }
+
 
 }

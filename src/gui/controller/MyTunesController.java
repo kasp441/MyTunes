@@ -141,7 +141,7 @@ public class MyTunesController {
 
     public void CloseApplicationButton(ActionEvent actionEvent)
     {
-
+        System.exit(1);
     }
 
     public void DeleteSongButton(ActionEvent actionEvent)
