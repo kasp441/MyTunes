@@ -118,7 +118,7 @@ public class MyTunesController {
         if (!playing){
             playMusic();
         }else{
-            player.pause();
+            player.stop();
             playing = false;
             currentlyPlayingLabel.setText("(none)... is playing");
         }
@@ -141,12 +141,14 @@ public class MyTunesController {
 
     public void CloseApplicationButton(ActionEvent actionEvent)
     {
-
+        System.exit(1);
     }
 
     public void DeleteSongButton(ActionEvent actionEvent)
     {
-
+        Song song = TVSongs.getSelectionModel().getSelectedItem();
+        songModel.deleteSong(song);
+        TVSongs.getItems().remove(song);
     }
 
     public void EditSongButton(ActionEvent actionEvent)

@@ -1,10 +1,12 @@
 package bll;
 
 import be.Song;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SearchSong {
+
     public ObservableList<Song> searchSong(ObservableList<Song> songList, String keyChar)
     {
         ObservableList<Song> result = FXCollections.observableArrayList();
