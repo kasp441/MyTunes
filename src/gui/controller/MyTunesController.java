@@ -118,7 +118,7 @@ public class MyTunesController {
         if (!playing){
             playMusic();
         }else{
-            player.pause();
+            player.stop();
             playing = false;
             currentlyPlayingLabel.setText("(none)... is playing");
         }
