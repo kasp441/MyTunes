@@ -41,5 +41,6 @@ public class Songmanager {
             songDAO.deleteSong(songDelete);
     }
 
+    public void songUpdate(Song songUpdate) throws SQLException {songDAO.updateSong(songUpdate);}
 
 }
