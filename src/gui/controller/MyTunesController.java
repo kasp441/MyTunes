@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Song;
 import be.Playlist;
+import dal.PlaylistDAO;
 import gui.model.SongModel;
 import gui.model.PlaylistModel;
 import javafx.beans.InvalidationListener;
@@ -94,8 +95,12 @@ public class MyTunesController {
 
     }
 
-    public void NewPlaylistButton(ActionEvent actionEvent) {
-
+    public void NewPlaylistButton(ActionEvent actionEvent) throws IOException {
+        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/EditPlaylist.fxml"))); // The FXML path
+        Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
+        Stage newSongStage = new Stage();
+        newSongStage.setScene(mainWindowScene); // Sets the new scene
+        newSongStage.show(); // This shows the new scene
     }
 
     public void DownButton(ActionEvent actionEvent) {
@@ -178,20 +183,11 @@ public class MyTunesController {
         Stage newSongStage = new Stage();
         newSongStage.setScene(mainWindowScene); // Sets the new scene
         newSongStage.show(); // This shows the new scene
-    }
-
-
-
-
-
-
-
-
-
-        public void NewSongButton (ActionEvent actionEvent)
-        {
-
         }
 
+    public void NewSongButton (ActionEvent actionEvent)
+    {
 
     }
+
+}
