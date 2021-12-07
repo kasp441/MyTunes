@@ -95,6 +95,7 @@ public class SongDAO {
 
     public static void main(String[] args) throws IOException, SQLException {
         SongDAO songDAO = new SongDAO();
+        songDAO.createSong("Take Me Away", "Tobjan","indie",187,"Data/Take Me Away.wav");
 
 
         //Test songs for database
