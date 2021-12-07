@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="582.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
+<AnchorPane prefHeight="582.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
    <children>
       <Slider fx:id="volumeSlider" layoutX="101.0" layoutY="69.0" />
       <TableView fx:id="TVPlaylist" layoutX="14.0" layoutY="143.0" prefHeight="351.0" prefWidth="225.0">
@@ -27,7 +27,7 @@
       <Button layoutX="304.0" layoutY="504.0" mnemonicParsing="false" onAction="#DownButton" text="Down" />
       <Button layoutX="260.0" layoutY="504.0" mnemonicParsing="false" onAction="#UpButton" text="Up" />
       <ListView layoutX="260.0" layoutY="143.0" prefHeight="351.0" prefWidth="162.0" />
-      <TableView fx:id="TVSongs" layoutX="506.0" layoutY="143.0" onMouseClicked="#getClickedSong" prefHeight="351.0" prefWidth="371.0">
+      <TableView fx:id="TVSongs" layoutX="506.0" layoutY="143.0" onMouseClicked="#getClickedSong" prefHeight="351.0" prefWidth="371.0" AnchorPane.leftAnchor="506.0" AnchorPane.rightAnchor="19.0">
         <columns>
           <TableColumn fx:id="songTitle" prefWidth="120.0" text="Title" />
           <TableColumn fx:id="songArtist" prefWidth="103.0" text="Artist" />
@@ -54,8 +54,8 @@
       </Label>
       <Button layoutX="832.0" layoutY="543.0" mnemonicParsing="false" onAction="#CloseApplicationButton" text="Close" />
       <Button layoutX="829.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeleteSongButton" text="Delete" />
-      <Button layoutX="571.0" layoutY="504.0" mnemonicParsing="false" onAction="#EditSongButton" text="Edit" />
-      <Button layoutX="520.0" layoutY="504.0" mnemonicParsing="false" onAction="#NewSongButton" text="New" />
+      <Button layoutX="559.0" layoutY="504.0" mnemonicParsing="false" onAction="#EditSongButton" text="Edit" />
+      <Button layoutX="520.0" layoutY="504.0" mnemonicParsing="false" onAction="#NewSongButton" text="New" AnchorPane.leftAnchor="506.0" />
       <Label layoutX="504.0" layoutY="121.0" text="Songs" />
    </children>
 </AnchorPane>
