@@ -175,7 +175,7 @@ public class MyTunesController {
     public void EditSongButton(javafx.event.ActionEvent event) throws SQLException, IOException {
         Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/gui/view/EditSong.fxml")); // The FXML path
         Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
-        Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage newSongStage = new Stage();
         newSongStage.setScene(mainWindowScene); // Sets the new scene
         newSongStage.show(); // This shows the new scene
     }
