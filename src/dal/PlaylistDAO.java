@@ -106,4 +106,36 @@ public class PlaylistDAO {
         playlistDAO.addSongToPlaylist(1, 42);
     }
 
+    public List<Song> getSongsFromPlaylist(Playlist playlist) {
+        List<Song> songsOnPlaylist = new ArrayList<>();
+        try (Connection connection = databaseConnector.getConnection()) {
+            String sql = "SELECT * FROM PlaylistSongs WHERE PlaylistId = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, playlist.getId());
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("SongId");
+                String songSql = "SELECT top(1) * FROM Song WHERE ID = ?";
+                PreparedStatement songPs = connection.prepareStatement(songSql);
+                songPs.setInt(1, id);
+                ResultSet rSet = songPs.executeQuery();
+
+                rSet.next();
+                int ID = rSet.getInt("ID");
+                String title = rSet.getString("Title");
+                String artist = rSet.getString("Artist");
+                String genre = rSet.getString("Genre");
+                String destination = rSet.getString("Destination");
+                int playtime = rSet.getInt("Playtime");
+                Song song = new Song(ID, title, artist, genre, destination, playtime);
+
+                songsOnPlaylist.add(song);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return songsOnPlaylist;
+    }
+
 }
