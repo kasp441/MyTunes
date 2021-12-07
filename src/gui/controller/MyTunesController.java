@@ -75,7 +75,7 @@ public class MyTunesController {
         });
 
         //Volume slider
-        volumeSlider.setValue(50); //starting volume
+        volumeSlider.setValue(25); //starting volume
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
