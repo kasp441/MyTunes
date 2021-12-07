@@ -1,5 +1,7 @@
 package be;
 
+import javafx.collections.FXCollections;
+
 import java.util.List;
 
 public class Playlist {
@@ -11,12 +13,14 @@ public class Playlist {
     private int totalSongs;
 
 
-    public Playlist(int id, String playlistname, int totallenght, int totalSongs){
+    public Playlist(int id, String playlistname){
+        playlist = FXCollections.observableArrayList();
         this.ID=id;
         this.playlistname=playlistname;
-        this.totallenght=totallenght;
-        this.totalSongs=totalSongs;
-
+        this.totallenght=0;
+        this.totalSongs=0;
+        updateTotallenght();
+        updateTotalSongs();
     }
 
     public List<Song> getPlaylist() {
@@ -32,6 +36,24 @@ public class Playlist {
     }
 
     public int getTotallenght() { return totallenght;}
+
+    public void updateTotallenght()
+    {
+        totallenght = 0;
+        for(Song song : this.playlist)
+        {
+            totallenght += song.getPlaytime();
+        }
+    }
+
+    public void updateTotalSongs()
+    {
+        totalSongs = 0;
+        for(Song song : this.playlist)
+        {
+            totalSongs++;
+        }
+    }
 
     public void setPlaylistname(String playlistname) {
         this.playlistname = playlistname;

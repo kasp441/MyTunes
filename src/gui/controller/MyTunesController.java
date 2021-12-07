@@ -1,7 +1,9 @@
 package gui.controller;
 
 import be.Song;
+import be.Playlist;
 import gui.model.SongModel;
+import gui.model.PlaylistModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -24,7 +26,13 @@ public class MyTunesController {
     public Label currentlyPlayingLabel;
     public TextField filterInput;
     public Slider volumeSlider;
+    public TableView<be.Playlist> TVPlaylist;
+    public TableColumn<Playlist, String> playlistName;
+    public TableColumn<Playlist, Integer> playlistSongCount;
+    public TableColumn<Playlist, Integer> playlistTime;
     private SongModel songModel;
+    private PlaylistModel playlistModel;
+
 
     public TableView<be.Song> TVSongs;
 
@@ -34,6 +42,7 @@ public class MyTunesController {
 
     public MyTunesController() throws IOException {
         songModel = new SongModel();
+        playlistModel = new PlaylistModel();
         currentSongIndex = 0;
 
     }
@@ -44,6 +53,10 @@ public class MyTunesController {
         songCategory.setCellValueFactory(new PropertyValueFactory<>("genre"));
         songTime.setCellValueFactory(new PropertyValueFactory<>("playtime"));
         TVSongs.setItems(songModel.getObservableSongs());
+        TVPlaylist.setItems(playlistModel.getObservablePlaylists());
+        playlistName.setCellValueFactory(new PropertyValueFactory<>("playlistname"));
+        playlistTime.setCellValueFactory(new PropertyValueFactory<>("totallenght"));
+        playlistSongCount.setCellValueFactory(new PropertyValueFactory<>("totalSongs"));
 
         //Song search
         filterInput.textProperty().addListener((observableValue, oldValue, newValue) -> {

@@ -27,9 +27,7 @@ public class PlaylistDAO {
             while (rs.next()) {
                 String name = rs.getString("PlaylistName");
                 int id = rs.getInt("Id");
-                int totallenght = rs.getInt("totallenght");
-                int totalsongs = rs.getInt("totalsongs");
-                Playlist pl = new Playlist(id, name, totallenght, totalsongs);
+                Playlist pl = new Playlist(id, name);
                 allPlaylists.add(pl);
             }
         } catch (SQLException ex) {
@@ -57,7 +55,7 @@ public class PlaylistDAO {
             }
             prepstatement.executeBatch();
         }
-            return new Playlist(newID, playlistName,0,0);
+            return new Playlist(newID, playlistName);
     }
     public void updatePlaylist(Playlist playlistUpdate) throws SQLException {
         try(Connection connection = databaseConnector.getConnection()) {
