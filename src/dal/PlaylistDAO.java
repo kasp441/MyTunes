@@ -84,26 +84,19 @@ public class PlaylistDAO {
         }
     }
 
-    public void addSongToPlaylist(int playlistId, int songId)
+    public void addSongToPlaylist(Playlist playlist, Song song)
     {
         //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
         String sql = "INSERT INTO PlaylistSongs(playlistId, songId) VALUES (?, ?)";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             //Sætter parametre
-            preparedStatement.setInt(1, playlistId);
-            preparedStatement.setInt(2, songId);
+            preparedStatement.setInt(1, playlist.getId());
+            preparedStatement.setInt(2, song.getID());
             preparedStatement.execute();
-        } catch (SQLServerException ex) {
-            System.out.println(ex);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-    }
-
-    public static void main(String[] args) throws IOException, SQLException {
-        PlaylistDAO playlistDAO = new PlaylistDAO();
-        playlistDAO.addSongToPlaylist(1, 42);
     }
 
     public List<Song> getSongsFromPlaylist(Playlist playlist) {

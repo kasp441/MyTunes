@@ -34,4 +34,7 @@ public class PlaylistModel {
         return playlistManager.getSongsFromPlaylist(playlist);
     }
 
+    public void addSongToPlaylist(Playlist playlist,Song song){
+        playlistManager.addSongToPlaylist(playlist,song);
+    }
 }

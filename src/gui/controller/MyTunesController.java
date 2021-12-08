@@ -2,14 +2,12 @@ package gui.controller;
 
 import be.Song;
 import be.Playlist;
-import dal.PlaylistDAO;
 import gui.model.SongModel;
 import gui.model.PlaylistModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -38,7 +36,7 @@ public class MyTunesController {
     public TableColumn<Playlist, String> playlistName;
     public TableColumn<Playlist, Integer> playlistSongCount;
     public TableColumn<Playlist, Integer> playlistTime;
-    public ListView LVSongsOnPlaylist;
+    public ListView<Song> LVSongsOnPlaylist;
     private SongModel songModel;
     private PlaylistModel playlistModel;
 
@@ -111,10 +109,16 @@ public class MyTunesController {
     }
 
     public void UpButton(ActionEvent actionEvent) {
-
+        
     }
 
     public void AddSongToPlaylistButton(ActionEvent actionEvent) {
+        Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
+        Song song = TVSongs.getSelectionModel().getSelectedItem();
+        if (song != null && playlist != null){
+            playlistModel.addSongToPlaylist(playlist,song);
+            LVSongsOnPlaylist.getItems().add(song);
+        }
 
     }
 
