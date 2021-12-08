@@ -1,6 +1,7 @@
 package bll;
 
 import be.Playlist;
+import be.Song;
 import dal.PlaylistDAO;
 
 import java.io.IOException;
@@ -34,6 +35,10 @@ public class PlaylistManager {
 
     public void deletePlaylist(Playlist playlistDelete) {
         playlistDAO.deletePlaylist(playlistDelete);
+    }
+
+    public List<Song> getSongsFromPlaylist(Playlist playlist){
+        return playlistDAO.getSongsFromPlaylist(playlist);
     }
 
 }

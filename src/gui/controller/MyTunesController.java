@@ -38,6 +38,7 @@ public class MyTunesController {
     public TableColumn<Playlist, String> playlistName;
     public TableColumn<Playlist, Integer> playlistSongCount;
     public TableColumn<Playlist, Integer> playlistTime;
+    public ListView LVSongsOnPlaylist;
     private SongModel songModel;
     private PlaylistModel playlistModel;
 
@@ -192,4 +193,8 @@ public class MyTunesController {
 
     }
 
+    public void HandleSpecificPlaylistClicked(MouseEvent mouseEvent) {
+        Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
+        LVSongsOnPlaylist.getItems().setAll(playlistModel.getSongsFromPlaylist(playlist));
+    }
 }

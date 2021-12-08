@@ -1,12 +1,14 @@
 package gui.model;
 
 import be.Playlist;
+import be.Song;
 import bll.PlaylistManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class PlaylistModel {
     PlaylistManager playlistManager;
@@ -26,6 +28,10 @@ public class PlaylistModel {
     public Playlist createPlaylist (String playlistName) throws SQLException {
 
         return playlistManager.createPlaylist(playlistName);
+    }
+
+    public List<Song> getSongsFromPlaylist(Playlist playlist){
+        return playlistManager.getSongsFromPlaylist(playlist);
     }
 
 }
