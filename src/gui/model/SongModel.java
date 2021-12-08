@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class SongModel {
@@ -36,4 +37,5 @@ public class SongModel {
         songmanager.deleteSong(song);
     }
 
+    public void updateSong(Song songUpdate) throws SQLException { songmanager.updateSong(songUpdate);}
 }

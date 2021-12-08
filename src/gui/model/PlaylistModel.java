@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class PlaylistModel {
     PlaylistManager playlistManager;
@@ -21,4 +22,11 @@ public class PlaylistModel {
     {
         return playlistToBeViewed;
     }
+
+    public Playlist createPlaylist (String playlistName) throws SQLException {
+        return playlistManager.createPlaylist(playlistName);
+
+    }
+
+
 }

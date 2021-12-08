@@ -23,9 +23,9 @@ public class PlaylistManager {
         playlistDAO.addSongToPlaylist(playlistId, songId);
     }
 
-    public void createPlaylist(String playlistName) throws SQLException
+    public Playlist createPlaylist(String playlistName) throws SQLException
     {
-        playlistDAO.createPlaylist(playlistName);
+        return playlistDAO.createPlaylist(playlistName);
     }
 
     public void updatePlaylist(Playlist playlistUpdate) throws SQLException {

@@ -2,19 +2,27 @@ package gui.controller;
 
 import be.Song;
 import be.Playlist;
+import dal.PlaylistDAO;
 import gui.model.SongModel;
 import gui.model.PlaylistModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Objects;
 
 
 public class MyTunesController {
@@ -60,7 +68,7 @@ public class MyTunesController {
 
         //Song search
         filterInput.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            try{
+            try {
                 songModel.searchSwitch(newValue);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -68,7 +76,7 @@ public class MyTunesController {
         });
 
         //Volume slider
-        volumeSlider.setValue(50); //starting volume
+        volumeSlider.setValue(25); //starting volume
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -77,80 +85,71 @@ public class MyTunesController {
         });
 
 
+    }
+
+    public void DeletePlaylistButton(ActionEvent actionEvent) {
 
     }
 
-    public void DeletePlaylistButton(ActionEvent actionEvent)
-    {
+    public void EditPlaylistButton(ActionEvent actionEvent) {
 
     }
 
-    public void EditPlaylistButton(ActionEvent actionEvent)
-    {
-
-    }
-    
-    public void NewPlaylistButton(ActionEvent actionEvent)
-    {
-
+    public void NewPlaylistButton(ActionEvent actionEvent) throws IOException {
+        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/EditPlaylist.fxml"))); // The FXML path
+        Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
+        Stage newSongStage = new Stage();
+        newSongStage.setScene(mainWindowScene); // Sets the new scene
+        newSongStage.show(); // This shows the new scene
     }
 
-    public void DownButton(ActionEvent actionEvent)
-    {
+    public void DownButton(ActionEvent actionEvent) {
 
     }
 
-    public void UpButton(ActionEvent actionEvent)
-    {
+    public void UpButton(ActionEvent actionEvent) {
 
     }
 
-    public void AddSongToPlaylistButton(ActionEvent actionEvent)
-    {
+    public void AddSongToPlaylistButton(ActionEvent actionEvent) {
 
     }
 
-    public void DeleteSongFromPlaylistButton(ActionEvent actionEvent)
-    {
+    public void DeleteSongFromPlaylistButton(ActionEvent actionEvent) {
 
     }
 
-    public void BackButton(ActionEvent actionEvent)
-    {
+    public void BackButton(ActionEvent actionEvent) {
         currentSongIndex--;
-        if (currentSongIndex >= 0){
+        if (currentSongIndex >= 0) {
             player.stop();
             playMusic();
-        }
-        else{
+        } else {
             currentSongIndex++;
         }
     }
 
-    public void SkipButton(ActionEvent actionEvent)
-    {
+    public void SkipButton(ActionEvent actionEvent) {
         currentSongIndex++;
-        if (currentSongIndex <= TVSongs.getItems().size()-1){
+        if (currentSongIndex <= TVSongs.getItems().size() - 1) {
             player.stop();
             playMusic();
-        }
-        else{
+        } else {
             currentSongIndex--;
         }
     }
 
-    public void PlayPauseButton(ActionEvent actionEvent)
-    {
-        if (!playing){
+    public void PlayPauseButton(ActionEvent actionEvent) {
+        if (!playing) {
             playMusic();
-        }else{
+        } else {
             player.pause();
             playing = false;
             currentlyPlayingLabel.setText("(none)... is playing");
         }
     }
 
-    private void playMusic(){
+    private void playMusic() {
         playing = true;
         Song currentSong = TVSongs.getItems().get(currentSongIndex);
         String path = currentSong.getDestination();
@@ -166,28 +165,29 @@ public class MyTunesController {
         currentSongIndex = TVSongs.getSelectionModel().getSelectedIndex();
     }
 
-    public void CloseApplicationButton(ActionEvent actionEvent)
-    {
+    public void CloseApplicationButton(ActionEvent actionEvent) {
         System.exit(1);
     }
 
-    public void DeleteSongButton(ActionEvent actionEvent)
-    {
+    public void DeleteSongButton(ActionEvent actionEvent) {
         Song song = TVSongs.getSelectionModel().getSelectedItem();
         songModel.deleteSong(song);
         TVSongs.getItems().remove(song);
     }
 
-    public void EditSongButton(ActionEvent actionEvent)
+
+
+    public void EditSongButton(javafx.event.ActionEvent event) throws SQLException, IOException {
+        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/gui/view/EditSong.fxml")); // The FXML path
+        Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
+        Stage newSongStage = new Stage();
+        newSongStage.setScene(mainWindowScene); // Sets the new scene
+        newSongStage.show(); // This shows the new scene
+        }
+
+    public void NewSongButton (ActionEvent actionEvent)
     {
 
     }
-
-    public void NewSongButton(ActionEvent actionEvent)
-    {
-
-    }
-
-
 
 }
