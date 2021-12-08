@@ -15,17 +15,17 @@ public class PlaylistModel {
     public PlaylistModel() throws IOException {
         playlistManager = new PlaylistManager();
         playlistToBeViewed = FXCollections.observableArrayList();
-        playlistToBeViewed.addAll(playlistManager.getAllPlaylists());
     }
 
     public ObservableList<Playlist> getObservablePlaylists()
     {
+        playlistToBeViewed.addAll(playlistManager.getAllPlaylists());
         return playlistToBeViewed;
     }
 
     public Playlist createPlaylist (String playlistName) throws SQLException {
-        return playlistManager.createPlaylist(playlistName);
 
+        return playlistManager.createPlaylist(playlistName);
     }
 
 }
