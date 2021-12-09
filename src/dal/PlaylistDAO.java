@@ -73,7 +73,7 @@ public class PlaylistDAO {
         }
     }
 
-    public void deletePlaylist(Playlist playlistDelete) {
+    public Playlist deletePlaylist(Playlist playlistDelete) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "DELETE from Playlist WHERE Id = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(sql);
@@ -82,6 +82,7 @@ public class PlaylistDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        return playlistDelete;
     }
 
     public void addSongToPlaylist(Playlist playlist, Song song)

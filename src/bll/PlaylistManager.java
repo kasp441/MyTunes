@@ -33,8 +33,8 @@ public class PlaylistManager {
         playlistDAO.updatePlaylist(playlistUpdate);
     }
 
-    public void deletePlaylist(Playlist playlistDelete) {
-        playlistDAO.deletePlaylist(playlistDelete);
+    public Playlist deletePlaylist(Playlist playlistDelete) {
+        return playlistDAO.deletePlaylist(playlistDelete);
     }
 
     public List<Song> getSongsFromPlaylist(Playlist playlist){

@@ -82,12 +82,12 @@ public class MyTunesController {
                 player.setVolume(volumeSlider.getValue() / 100);
             }
         });
-
-
     }
 
-    public void DeletePlaylistButton(ActionEvent actionEvent) {
-
+    public void DeletePlaylistButton(ActionEvent actionEvent) throws SQLException {
+        Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
+        playlistModel.deletePlaylist(playlist);
+        TVPlaylist.getItems().remove(playlist);
     }
 
     public void EditPlaylistButton(ActionEvent actionEvent) {

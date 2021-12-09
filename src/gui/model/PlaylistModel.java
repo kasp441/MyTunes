@@ -30,6 +30,7 @@ public class PlaylistModel {
         return playlistManager.createPlaylist(playlistName);
     }
 
+<<<<<<< Updated upstream
     public List<Song> getSongsFromPlaylist(Playlist playlist){
         return playlistManager.getSongsFromPlaylist(playlist);
     }
@@ -38,3 +39,10 @@ public class PlaylistModel {
         playlistManager.addSongToPlaylist(playlist,song);
     }
 }
+=======
+    public Playlist deletePlaylist (Playlist playlistDelete) throws SQLException {
+        return playlistManager.deletePlaylist(playlistDelete);
+    }
+
+}
+>>>>>>> Stashed changes
