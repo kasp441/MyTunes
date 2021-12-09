@@ -92,12 +92,13 @@ public class PlaylistDAO {
 
     public void addSongToPlaylist(Playlist playlist, Song song) throws SQLException {
         //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
-        String sql = "INSERT INTO PlaylistSongs(playlistId, songId) VALUES (?, ?)";
+        String sql = "INSERT INTO PlaylistSongs(playlistId, songId, Position) VALUES (?, ?,?)";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             //Sætter parametre
             preparedStatement.setInt(1, playlist.getId());
             preparedStatement.setInt(2, song.getID());
+            preparedStatement.setInt(3, getNextPosition(playlist));
             preparedStatement.execute();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -106,13 +107,49 @@ public class PlaylistDAO {
         updatePlaylist(playlist);
     }
 
-    public void deleteSongFromPlaylist(Playlist playlist, Song song) {
+    public int getNextPosition(Playlist playlist) throws SQLException {
+        int nextPos = 0;
+        String sql = "SELECT MAX(Position) AS LastPos FROM PlaylistSongs WHERE PlaylistId = ?";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, playlist.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                nextPos = resultSet.getInt("LastPos")+1;
+            }
+        }
+        return  nextPos;
+    }
+
+    public void deleteSongFromPlaylist(Playlist playlist, Song song, int index) {
+        //delete the selected song
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "DELETE FROM PlaylistSongs WHERE playlistId = ? AND songId = ? SELECT 1 FROM Playlistsongs";
+            String sql = "DELETE FROM PlaylistSongs WHERE playlistId = ? AND songId = ? AND Position = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, playlist.getId());
             ps.setInt(2, song.getID());
+            ps.setInt(3, index);
             ps.execute();
+
+            //get resultset of anything with higher position than the deleted song
+            String sql2 = "SELECT * FROM PlaylistSongs WHERE Position >= ? AND playlistId = ?";
+            PreparedStatement ps2 = connection.prepareStatement(sql2);
+            ps2.setInt(1,index);
+            ps2.setInt(2,playlist.getId());
+            ResultSet resultSet = ps2.executeQuery();
+
+            //fill the position gap from the deleted song
+            String sql3 = "UPDATE PlaylistSongs SET Position = ? WHERE Position = ?";
+            PreparedStatement ps3 = connection.prepareStatement(sql3);
+            while (resultSet.next()){
+                int currentPos = resultSet.getInt("position");
+                int newPos = resultSet.getInt("position")-1;
+                ps3.setInt(1,newPos);
+                ps3.setInt(2,currentPos);
+                ps3.addBatch();
+            }
+            ps3.executeBatch();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -150,4 +187,9 @@ public class PlaylistDAO {
         return songsOnPlaylist;
     }
 
+    public static void main(String[] args) throws IOException, SQLException {
+        PlaylistDAO playlistDAO = new PlaylistDAO();
+        Playlist playlist = playlistDAO.getAllPlaylists().get(0);
+        System.out.println(playlistDAO.getNextPosition(playlist));
+    }
 }

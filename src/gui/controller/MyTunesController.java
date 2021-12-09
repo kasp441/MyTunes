@@ -125,8 +125,9 @@ public class MyTunesController {
     public void DeleteSongFromPlaylistButton(ActionEvent actionEvent) throws SQLException {
         Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
         Song song = LVSongsOnPlaylist.getSelectionModel().getSelectedItem();
+        int index = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex()+1; // test
         if (song != null && playlist != null) {
-            playlistModel.deleteSongFromPlaylist(playlist, song);
+            playlistModel.deleteSongFromPlaylist(playlist, song, index);
             LVSongsOnPlaylist.getItems().remove(song);
         }
     }
