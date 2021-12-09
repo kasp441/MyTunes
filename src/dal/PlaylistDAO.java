@@ -140,13 +140,14 @@ public class PlaylistDAO {
             ResultSet resultSet = ps2.executeQuery();
 
             //fill the position gap from the deleted song
-            String sql3 = "UPDATE PlaylistSongs SET Position = ? WHERE Position = ?";
+            String sql3 = "UPDATE PlaylistSongs SET Position = ? WHERE Position = ? AND playlistId = ?";
             PreparedStatement ps3 = connection.prepareStatement(sql3);
             while (resultSet.next()){
                 int currentPos = resultSet.getInt("position");
                 int newPos = resultSet.getInt("position")-1;
                 ps3.setInt(1,newPos);
                 ps3.setInt(2,currentPos);
+                ps3.setInt(3,playlist.getId());
                 ps3.addBatch();
             }
             ps3.executeBatch();
