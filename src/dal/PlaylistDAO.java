@@ -75,8 +75,13 @@ public class PlaylistDAO {
 
     public Playlist deletePlaylist(Playlist playlistDelete) {
         try (Connection connection = databaseConnector.getConnection()) {
+            String sqLang = "DELETE from PlaylistSongs WHERE PlaylistID = ?";
+            PreparedStatement preparedStmt = connection.prepareStatement(sqLang);
+            preparedStmt.setString(1, Integer.toString(playlistDelete.getId()));
+            preparedStmt.execute();
+
             String sql = "DELETE from Playlist WHERE Id = ?";
-            PreparedStatement preparedStmt = connection.prepareStatement(sql);
+            preparedStmt = connection.prepareStatement(sql);
             preparedStmt.setString(1, Integer.toString(playlistDelete.getId()));
             preparedStmt.execute();
         } catch (SQLException ex) {
