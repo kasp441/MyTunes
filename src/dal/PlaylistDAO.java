@@ -90,8 +90,7 @@ public class PlaylistDAO {
         return playlistDelete;
     }
 
-    public void addSongToPlaylist(Playlist playlist, Song song)
-    {
+    public void addSongToPlaylist(Playlist playlist, Song song) throws SQLException {
         //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
         String sql = "INSERT INTO PlaylistSongs(playlistId, songId) VALUES (?, ?)";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -103,6 +102,8 @@ public class PlaylistDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        playlist.addSongToPlaylist(song);
+        updatePlaylist(playlist);
     }
 
     public List<Song> getSongsFromPlaylist(Playlist playlist) {

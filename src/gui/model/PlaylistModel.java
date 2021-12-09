@@ -33,7 +33,7 @@ public class PlaylistModel {
         return playlistManager.getSongsFromPlaylist(playlist);
     }
 
-    public void addSongToPlaylist(Playlist playlist,Song song){
+    public void addSongToPlaylist(Playlist playlist,Song song) throws SQLException {
         playlistManager.addSongToPlaylist(playlist,song);
     }
 

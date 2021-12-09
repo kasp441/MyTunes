@@ -19,8 +19,6 @@ public class Playlist {
         this.playlistname=playlistname;
         this.totallenght=0;
         this.totalSongs=0;
-        updateTotallenght();
-        updateTotalSongs();
     }
 
     public List<Song> getPlaylist() {
@@ -35,7 +33,11 @@ public class Playlist {
         return ID;
     }
 
-    public int getTotallenght() { return totallenght;}
+    public int getTotallenght()
+    {
+        updateTotallenght();
+        return totallenght;
+    }
 
     public void updateTotallenght()
     {
@@ -59,5 +61,16 @@ public class Playlist {
         this.playlistname = playlistname;
     }
 
-    public int getTotalSongs() {return totalSongs;}
+    public int getTotalSongs()
+    {
+        updateTotalSongs();
+        return totalSongs;
+    }
+
+    public void addSongToPlaylist(Song song)
+    {
+        playlist.add(song);
+        updateTotallenght();
+        updateTotalSongs();
+    }
 }

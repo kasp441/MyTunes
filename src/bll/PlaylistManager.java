@@ -19,8 +19,7 @@ public class PlaylistManager {
     return playlistDAO.getAllPlaylists();
     }
 
-    public void addSongToPlaylist(Playlist playlist, Song song)
-    {
+    public void addSongToPlaylist(Playlist playlist, Song song) throws SQLException {
         playlistDAO.addSongToPlaylist(playlist, song);
     }
 

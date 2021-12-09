@@ -112,7 +112,7 @@ public class MyTunesController {
         
     }
 
-    public void AddSongToPlaylistButton(ActionEvent actionEvent) {
+    public void AddSongToPlaylistButton(ActionEvent actionEvent) throws SQLException {
         Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
         Song song = TVSongs.getSelectionModel().getSelectedItem();
         if (song != null && playlist != null){
@@ -199,6 +199,9 @@ public class MyTunesController {
 
     public void HandleSpecificPlaylistClicked(MouseEvent mouseEvent) {
         Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
-        LVSongsOnPlaylist.getItems().setAll(playlistModel.getSongsFromPlaylist(playlist));
+        if (playlist != null)
+        {
+            LVSongsOnPlaylist.getItems().setAll(playlistModel.getSongsFromPlaylist(playlist));
+        }
     }
 }
