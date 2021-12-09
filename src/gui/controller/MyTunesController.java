@@ -122,8 +122,13 @@ public class MyTunesController {
 
     }
 
-    public void DeleteSongFromPlaylistButton(ActionEvent actionEvent) {
-
+    public void DeleteSongFromPlaylistButton(ActionEvent actionEvent) throws SQLException {
+        Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
+        Song song = LVSongsOnPlaylist.getSelectionModel().getSelectedItem();
+        if (song != null && playlist != null) {
+            playlistModel.deleteSongFromPlaylist(playlist, song);
+            LVSongsOnPlaylist.getItems().remove(song);
+        }
     }
 
     public void BackButton(ActionEvent actionEvent) {

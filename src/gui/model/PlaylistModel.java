@@ -37,6 +37,10 @@ public class PlaylistModel {
         playlistManager.addSongToPlaylist(playlist,song);
     }
 
+    public void deleteSongFromPlaylist(Playlist playlist, Song song) throws SQLException {
+        playlistManager.deleteSongFromPlaylist(playlist, song);
+    }
+
     public Playlist deletePlaylist (Playlist playlistDelete) throws SQLException {
         return playlistManager.deletePlaylist(playlistDelete);
     }

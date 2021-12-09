@@ -23,6 +23,10 @@ public class PlaylistManager {
         playlistDAO.addSongToPlaylist(playlist, song);
     }
 
+    public void deleteSongFromPlaylist(Playlist playlist, Song song) throws SQLException {
+        playlistDAO.deleteSongFromPlaylist(playlist, song);
+    }
+
     public Playlist createPlaylist(String playlistName) throws SQLException
     {
         return playlistDAO.createPlaylist(playlistName);

@@ -106,6 +106,18 @@ public class PlaylistDAO {
         updatePlaylist(playlist);
     }
 
+    public void deleteSongFromPlaylist(Playlist playlist, Song song) {
+        try (Connection connection = databaseConnector.getConnection()) {
+            String sql = "DELETE FROM PlaylistSongs WHERE playlistId = ? AND songId = ? SELECT 1 FROM Playlistsongs";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, playlist.getId());
+            ps.setInt(2, song.getID());
+            ps.execute();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
     public List<Song> getSongsFromPlaylist(Playlist playlist) {
         List<Song> songsOnPlaylist = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
