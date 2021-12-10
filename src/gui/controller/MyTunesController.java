@@ -118,6 +118,7 @@ public class MyTunesController {
         if (song != null && playlist != null){
             playlistModel.addSongToPlaylist(playlist,song);
             LVSongsOnPlaylist.getItems().add(song);
+            TVPlaylist.refresh();
         }
 
     }
