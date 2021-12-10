@@ -28,6 +28,10 @@ public class PlaylistDAO {
                 String name = rs.getString("PlaylistName");
                 int id = rs.getInt("Id");
                 Playlist pl = new Playlist(id, name);
+                for (Song song : getSongsFromPlaylist(pl))
+                {
+                    pl.addSongToPlaylist(song);
+                }
                 allPlaylists.add(pl);
             }
         } catch (SQLException ex) {
