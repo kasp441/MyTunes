@@ -130,6 +130,7 @@ public class MyTunesController {
         if (song != null && playlist != null) {
             playlistModel.deleteSongFromPlaylist(playlist, song, index);
             LVSongsOnPlaylist.getItems().remove(song);
+            TVPlaylist.refresh();
         }
     }
 

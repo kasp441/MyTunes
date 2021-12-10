@@ -73,4 +73,11 @@ public class Playlist {
         updateTotallenght();
         updateTotalSongs();
     }
+
+    public void removeSongFromPlaylist(Song song)
+    {
+        playlist.remove(song);
+        updateTotallenght();
+        updateTotalSongs();
+    }
 }

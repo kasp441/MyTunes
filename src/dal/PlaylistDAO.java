@@ -155,6 +155,7 @@ public class PlaylistDAO {
                 ps3.addBatch();
             }
             ps3.executeBatch();
+            playlist.removeSongFromPlaylist(song);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
