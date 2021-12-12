@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Song;
 import be.Playlist;
+import bll.util.Jukebox;
 import gui.model.SongModel;
 import gui.model.PlaylistModel;
 import javafx.beans.InvalidationListener;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -39,19 +41,14 @@ public class MyTunesController {
     public ListView<Song> LVSongsOnPlaylist;
     private SongModel songModel;
     private PlaylistModel playlistModel;
-
-
+    private Jukebox jukebox;
+    
     public TableView<be.Song> TVSongs;
-
-    boolean playing;
-    MediaPlayer player;
-    int currentSongIndex;
-
+    
     public MyTunesController() throws IOException {
+        jukebox = new Jukebox();
         songModel = new SongModel();
         playlistModel = new PlaylistModel();
-        currentSongIndex = 0;
-
     }
 
     public void initialize() {
@@ -75,11 +72,12 @@ public class MyTunesController {
         });
 
         //Volume slider
+        // FIXME: 12-12-2021 volume 
         volumeSlider.setValue(25); //starting volume
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                player.setVolume(volumeSlider.getValue() / 100);
+                jukebox.setVolume(volumeSlider.getValue() / 100);
             }
         });
     }
@@ -135,49 +133,70 @@ public class MyTunesController {
     }
 
     public void BackButton(ActionEvent actionEvent) {
-        currentSongIndex--;
-        if (currentSongIndex >= 0) {
-            player.stop();
-            playMusic();
-        } else {
-            currentSongIndex++;
-        }
+        jukebox.backSong();
+        updateCurrentlyPlayinglabel();
     }
 
     public void SkipButton(ActionEvent actionEvent) {
-        currentSongIndex++;
-        if (currentSongIndex <= TVSongs.getItems().size() - 1) {
-            player.stop();
-            playMusic();
-        } else {
-            currentSongIndex--;
-        }
+        jukebox.skipSong();
+        updateCurrentlyPlayinglabel();
     }
 
     public void PlayPauseButton(ActionEvent actionEvent) {
-        if (!playing) {
-            playMusic();
-        } else {
-            player.pause();
-            playing = false;
-            currentlyPlayingLabel.setText("(none)... is playing");
+        //for playing from playlist
+        if (LVSongsOnPlaylist.getSelectionModel().getSelectedItem() != null && !jukebox.isPlaying()){
+            int songsIndex = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex();
+            Song selectedSong = jukebox.getSongList().get(songsIndex);
+            if (selectedSong != jukebox.getCurrentSong()){
+                jukebox.setCurrentSong(selectedSong);
+                LVSongsOnPlaylist.getSelectionModel().clearSelection();
+            }
         }
+
+        //for if the songlist is selected
+        if (TVSongs.getSelectionModel().getSelectedItem() != null && !jukebox.isPlaying()){
+            int songsIndex = TVSongs.getSelectionModel().getFocusedIndex();
+            Song selectedSong = jukebox.getSongList().get(songsIndex);
+                if (selectedSong != jukebox.getCurrentSong()){
+                    jukebox.setCurrentSong(selectedSong);
+                    TVSongs.getSelectionModel().clearSelection();
+                }
+        }
+
+        jukebox.playPause();
+        jukebox.setVolume(volumeSlider.getValue()/100);
+        updateCurrentlyPlayinglabel();
     }
 
-    private void playMusic() {
-        playing = true;
-        Song currentSong = TVSongs.getItems().get(currentSongIndex);
-        String path = currentSong.getDestination();
-        File file = new File(path);
-        Media media = new Media(file.toURI().toString());
-        player = new MediaPlayer(media);
-        player.setVolume(volumeSlider.getValue() / 100);
-        currentlyPlayingLabel.setText(currentSong.getTitle());
-        player.play();
-    }
 
     public void getClickedSong(MouseEvent mouseEvent) {
-        currentSongIndex = TVSongs.getSelectionModel().getSelectedIndex();
+        //// rename metode til "handleClickTVSongs"!
+        LVSongsOnPlaylist.getSelectionModel().clearSelection();
+
+        int selectedIndex = TVSongs.getSelectionModel().getSelectedIndex();
+        List<Song> selectedSongList = TVSongs.getItems();
+
+        if (selectedSongList != jukebox.getSongList()){
+            jukebox.setSongList(selectedSongList);
+        }
+
+        jukebox.setCurrentSongIndex(selectedIndex);
+    }
+
+    public void handleLVSongsOnPlaylistClicked(MouseEvent mouseEvent) {
+        TVSongs.getSelectionModel().clearSelection();
+
+        int selectedIndex = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex();
+        List<Song> selectedSongList = LVSongsOnPlaylist.getItems();
+
+        if (selectedSongList != jukebox.getSongList()){
+            jukebox.setSongList(selectedSongList);
+        }
+        jukebox.setCurrentSongIndex(selectedIndex);
+    }
+
+    private void updateCurrentlyPlayinglabel(){
+        currentlyPlayingLabel.setText(jukebox.getCurrentSongTitle() + " is playing");
     }
 
     public void CloseApplicationButton(ActionEvent actionEvent) {
@@ -212,4 +231,6 @@ public class MyTunesController {
             LVSongsOnPlaylist.getItems().setAll(playlistModel.getSongsFromPlaylist(playlist));
         }
     }
+
+
 }
