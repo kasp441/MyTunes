@@ -58,6 +58,7 @@ MediaPlayer mediaPlayer;
         File file = new File(song.getDestination());
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
+
     }
 
     public void skipSong(){
@@ -98,7 +99,7 @@ MediaPlayer mediaPlayer;
     }
     public String getCurrentSongTitle(){
         if (playing){
-            return songList.get(currentSongIndex).getTitle();
+            return songList.get(currentSongIndex).getTitle() + " is playing";
         }
         else
             return "Nothing is playing";
@@ -118,7 +119,9 @@ MediaPlayer mediaPlayer;
     }
 
     public void setVolume(double volume){
-        mediaPlayer.setVolume(volume);
+        if (mediaPlayer != null){
+            mediaPlayer.setVolume(volume);
+        }
     }
 
 }

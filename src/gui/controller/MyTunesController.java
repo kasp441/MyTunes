@@ -42,7 +42,9 @@ public class MyTunesController {
     private SongModel songModel;
     private PlaylistModel playlistModel;
     private Jukebox jukebox;
-    
+    double volume;
+
+
     public TableView<be.Song> TVSongs;
     
     public MyTunesController() throws IOException {
@@ -72,12 +74,12 @@ public class MyTunesController {
         });
 
         //Volume slider
-        // FIXME: 12-12-2021 volume 
         volumeSlider.setValue(25); //starting volume
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                jukebox.setVolume(volumeSlider.getValue() / 100);
+                volume = volumeSlider.getValue() / 100;
+                jukebox.setVolume(volume);
             }
         });
     }
@@ -134,11 +136,13 @@ public class MyTunesController {
 
     public void BackButton(ActionEvent actionEvent) {
         jukebox.backSong();
+        jukebox.setVolume(volume);
         updateCurrentlyPlayinglabel();
     }
 
     public void SkipButton(ActionEvent actionEvent) {
         jukebox.skipSong();
+        jukebox.setVolume(volume);
         updateCurrentlyPlayinglabel();
     }
 
@@ -196,7 +200,7 @@ public class MyTunesController {
     }
 
     private void updateCurrentlyPlayinglabel(){
-        currentlyPlayingLabel.setText(jukebox.getCurrentSongTitle() + " is playing");
+        currentlyPlayingLabel.setText(jukebox.getCurrentSongTitle());
     }
 
     public void CloseApplicationButton(ActionEvent actionEvent) {
@@ -208,7 +212,6 @@ public class MyTunesController {
         songModel.deleteSong(song);
         TVSongs.getItems().remove(song);
     }
-
 
 
     public void EditSongButton(javafx.event.ActionEvent event) throws SQLException, IOException {
