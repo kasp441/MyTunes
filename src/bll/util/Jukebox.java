@@ -1,13 +1,13 @@
 package bll.util;
 
 import be.Song;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.MissingFormatArgumentException;
+import java.util.*;
 
 public class Jukebox {
 private List<Song> songList;
@@ -17,12 +17,15 @@ boolean playing;
 Media media;
 MediaPlayer mediaPlayer;
 
+
     public Jukebox() {
         currentSongIndex = 0;
         currentSong = null;
         playing = false;
         songList = new ArrayList<>();
+
     }
+
 
     public void setSongList(List<Song> inputSongs){
         songList = inputSongs;
@@ -54,11 +57,13 @@ MediaPlayer mediaPlayer;
 
     }
 
+
     public void setCurrentSong(Song song){
         File file = new File(song.getDestination());
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
 
+        mediaPlayer.setOnEndOfMedia(this::skipSong);
     }
 
     public void skipSong(){
@@ -97,12 +102,24 @@ MediaPlayer mediaPlayer;
     public boolean isPlaying(){
         return playing;
     }
-    public String getCurrentSongTitle(){
-        if (playing){
-            return songList.get(currentSongIndex).getTitle() + " is playing";
+    public StringProperty getCurrentSongTitle(){
+        StringProperty sp= new SimpleStringProperty();
+        while(playing){
+                sp.setValue(songList.get(currentSongIndex).getTitle() + " is playing");
+                return sp;
+
+
         }
-        else
-            return "Nothing is playing";
+        if (!playing){
+            sp.setValue("Nothing is playing");
+            return sp;
+        }
+        sp.setValue("fuk");
+        return sp;
+    }
+
+    public MediaPlayer getMediaPlayer(){
+        return mediaPlayer;
     }
 
     public Song getCurrentSong(){

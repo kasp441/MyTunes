@@ -7,6 +7,7 @@ import gui.model.SongModel;
 import gui.model.PlaylistModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -82,6 +83,8 @@ public class MyTunesController {
                 jukebox.setVolume(volume);
             }
         });
+
+        currentlyPlayingLabel.textProperty().bind(jukebox.getCurrentSongTitle());
     }
 
     public void DeletePlaylistButton(ActionEvent actionEvent) throws SQLException {
@@ -137,13 +140,13 @@ public class MyTunesController {
     public void BackButton(ActionEvent actionEvent) {
         jukebox.backSong();
         jukebox.setVolume(volume);
-        updateCurrentlyPlayinglabel();
+      //  updateCurrentlyPlayinglabel();
     }
 
     public void SkipButton(ActionEvent actionEvent) {
         jukebox.skipSong();
         jukebox.setVolume(volume);
-        updateCurrentlyPlayinglabel();
+        //updateCurrentlyPlayinglabel();
     }
 
     public void PlayPauseButton(ActionEvent actionEvent) {
@@ -169,7 +172,7 @@ public class MyTunesController {
 
         jukebox.playPause();
         jukebox.setVolume(volumeSlider.getValue()/100);
-        updateCurrentlyPlayinglabel();
+      //  updateCurrentlyPlayinglabel();
     }
 
 
@@ -198,11 +201,11 @@ public class MyTunesController {
         }
         jukebox.setCurrentSongIndex(selectedIndex);
     }
-
+/*
     private void updateCurrentlyPlayinglabel(){
         currentlyPlayingLabel.setText(jukebox.getCurrentSongTitle());
     }
-
+*/
     public void CloseApplicationButton(ActionEvent actionEvent) {
         System.exit(1);
     }
