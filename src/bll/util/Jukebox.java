@@ -58,7 +58,7 @@ MediaPlayer mediaPlayer;
         File file = new File(song.getDestination());
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
-
+        currentSong = song;
         mediaPlayer.setOnEndOfMedia(this::skipSong);
     }
 
@@ -100,7 +100,7 @@ MediaPlayer mediaPlayer;
     }
     public String getCurrentSongTitle(){
         if (playing){
-            return songList.get(currentSongIndex).getTitle() + " is playing";
+            return currentSong.getTitle() + " is playing";
         }
         else
             return "Nothing is playing";
