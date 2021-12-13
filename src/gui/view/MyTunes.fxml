@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
+<AnchorPane onMouseMoved="#handleMouseMove" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
    <children>
       <Slider fx:id="volumeSlider" layoutX="108.0" layoutY="82.0" AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="82.0" />
       <TableView fx:id="TVPlaylist" layoutX="14.0" layoutY="143.0" onMouseClicked="#HandleSpecificPlaylistClicked" prefHeight="351.0" prefWidth="225.0" AnchorPane.leftAnchor="20.0">

@@ -59,6 +59,7 @@ MediaPlayer mediaPlayer;
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
 
+        mediaPlayer.setOnEndOfMedia(this::skipSong);
     }
 
     public void skipSong(){
