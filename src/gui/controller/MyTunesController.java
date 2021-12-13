@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class MyTunesController {
@@ -208,9 +209,13 @@ public class MyTunesController {
     }
 
     public void DeleteSongButton(ActionEvent actionEvent) {
-        Song song = TVSongs.getSelectionModel().getSelectedItem();
-        songModel.deleteSong(song);
-        TVSongs.getItems().remove(song);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete?",ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.YES) {
+            Song song = TVSongs.getSelectionModel().getSelectedItem();
+            songModel.deleteSong(song);
+            TVSongs.getItems().remove(song);
+        }
     }
 
 
