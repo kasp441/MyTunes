@@ -44,7 +44,6 @@ public class EditSongController implements Initializable {
         songModel = new SongModel();
     }
 
-
     public void handleChoose(ActionEvent actionEvent) throws UnsupportedAudioFileException, IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select file resource");
@@ -56,7 +55,7 @@ public class EditSongController implements Initializable {
         File file = fileChooser.showOpenDialog(source.getScene().getWindow());
         if (file != null) {
             String filePath = file.getPath();
-            txtFieldFileEdit.setText(filePath);
+            txtFieldFileEdit.setText(filePath.replace("\\","/").split("MyTunes/")[1]);
             String fileName = file.getName();
             txtFieldSongTitleEdit.setText(fileName);
 
@@ -70,12 +69,8 @@ public class EditSongController implements Initializable {
                         txtFieldTimeEdit.setText((int) songlengt+"");
                     }
                 });
-
-
         }
     }
-
-
 
     public void handleSave(ActionEvent actionEvent) throws SQLException {
         if (!txtFieldTimeEdit.getText().isEmpty() && !genreCombobox.getItems().isEmpty() && !txtFieldSongTitleEdit.getText().isEmpty() && !txtFieldFileEdit.getText().isEmpty() && !txtFieldArtistEdit.getText().isEmpty()) {
@@ -88,10 +83,6 @@ public class EditSongController implements Initializable {
             alert.setHeaderText("fill out all textfields");
             alert.showAndWait();        }
     }
-
-
-
-
 
     public void handleCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -108,8 +99,6 @@ public class EditSongController implements Initializable {
         comp.getChildren().add(labelField);
         comp.getChildren().add(genreField);
         comp.getChildren().add(buttonDone);
-
-
 
         Scene stageScene = new Scene(comp, 300, 75);
         newStage.setScene(stageScene);

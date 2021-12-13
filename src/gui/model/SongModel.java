@@ -22,6 +22,8 @@ public class SongModel {
     }
 
     public ObservableList<Song> getObservableSongs(){
+        songsToBeViewed.clear();
+        songsToBeViewed.addAll(songmanager.getAllSongs());
         return songsToBeViewed;
     }
 

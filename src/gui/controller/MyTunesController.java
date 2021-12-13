@@ -223,7 +223,9 @@ public class MyTunesController {
         Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
         Stage newSongStage = new Stage();
         newSongStage.setScene(mainWindowScene); // Sets the new scene
-        newSongStage.show(); // This shows the new scene
+        newSongStage.showAndWait(); // This shows the new scene
+        TVSongs.getItems().clear();
+        TVSongs.setItems(songModel.getObservableSongs());
     }
 
     public void HandleSpecificPlaylistClicked(MouseEvent mouseEvent) {
