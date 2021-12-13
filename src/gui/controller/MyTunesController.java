@@ -95,16 +95,24 @@ public class MyTunesController {
         }
     }
 
-    public void EditPlaylistButton(ActionEvent actionEvent) {
+    public void EditPlaylistButton(ActionEvent actionEvent) throws IOException {
+        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/EditPlaylist.fxml"))); // The FXML path
+        Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
+        Stage editPlaylistStage = new Stage();
+        editPlaylistStage.setScene(mainWindowScene); // Sets the new scene
+
+        editPlaylistStage.showAndWait();
+
+        // FIXME: 13-12-2021
 
     }
 
     public void NewPlaylistButton(ActionEvent actionEvent) throws IOException {
         Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/EditPlaylist.fxml"))); // The FXML path
         Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
-        Stage newSongStage = new Stage();
-        newSongStage.setScene(mainWindowScene); // Sets the new scene
-        newSongStage.showAndWait(); // This shows the new scene
+        Stage newPlaylistStage = new Stage();
+        newPlaylistStage.setScene(mainWindowScene); // Sets the new scene
+        newPlaylistStage.showAndWait(); // This shows the new scene
         TVPlaylist.getItems().clear();
         TVPlaylist.setItems(playlistModel.getObservablePlaylists());
     }
@@ -135,7 +143,8 @@ public class MyTunesController {
         if (song != null && playlist != null) {
             playlistModel.deleteSongFromPlaylist(playlist, song, index);
             LVSongsOnPlaylist.getItems().remove(song);
-            TVPlaylist.refresh();
+            TVPlaylist.getItems().clear();
+            TVPlaylist.setItems(playlistModel.getObservablePlaylists());
         }
     }
 

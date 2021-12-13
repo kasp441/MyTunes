@@ -45,5 +45,9 @@ public class PlaylistModel {
         return playlistManager.deletePlaylist(playlistDelete);
     }
 
+    public void updatePlaylist(Playlist playlist) throws SQLException {
+         playlistManager.updatePlaylist(playlist);
+    }
+
 
 }
