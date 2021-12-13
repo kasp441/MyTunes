@@ -38,4 +38,9 @@ public class SongModel {
     }
 
     public void updateSong(Song songUpdate) throws SQLException { songmanager.updateSong(songUpdate);}
+
+    public void createSong(String title, String artist, String genre, int playtime, String destination) throws SQLException {
+        songmanager.createSong(title, artist, genre, playtime, destination);
+    }
+
 }

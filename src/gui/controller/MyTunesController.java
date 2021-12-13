@@ -193,16 +193,15 @@ public class MyTunesController {
 
 
     public void EditSongButton(javafx.event.ActionEvent event) throws SQLException, IOException {
+        // FIXME: 13-12-2021
+        }
+
+    public void NewSongButton (ActionEvent actionEvent) throws IOException {
         Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/gui/view/EditSong.fxml")); // The FXML path
         Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
         Stage newSongStage = new Stage();
         newSongStage.setScene(mainWindowScene); // Sets the new scene
         newSongStage.show(); // This shows the new scene
-        }
-
-    public void NewSongButton (ActionEvent actionEvent)
-    {
-
     }
 
     public void HandleSpecificPlaylistClicked(MouseEvent mouseEvent) {
