@@ -60,15 +60,6 @@ public class EditSongController implements Initializable {
             String fileName = file.getName();
             txtFieldSongTitleEdit.setText(fileName);
 
-            if (file.getName().contains(".wav")) {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-                AudioFormat format = audioInputStream.getFormat();
-                long frames = audioInputStream.getFrameLength();
-                double durationInSeconds = (frames + 0.0) / format.getFrameRate();
-                txtFieldTimeEdit.setText((int) durationInSeconds + "");
-
-
-            } if (file.getName().contains(".mp3")){
                 javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
 
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -79,7 +70,7 @@ public class EditSongController implements Initializable {
                         txtFieldTimeEdit.setText((int) songlengt+"");
                     }
                 });
-            }
+
 
         }
     }
