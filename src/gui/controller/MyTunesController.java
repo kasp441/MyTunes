@@ -86,9 +86,13 @@ public class MyTunesController {
     }
 
     public void DeletePlaylistButton(ActionEvent actionEvent) throws SQLException {
-        Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
-        playlistModel.deletePlaylist(playlist);
-        TVPlaylist.getItems().remove(playlist);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete?",ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.YES) {
+            Playlist playlist = TVPlaylist.getSelectionModel().getSelectedItem();
+            playlistModel.deletePlaylist(playlist);
+            TVPlaylist.getItems().remove(playlist);
+        }
     }
 
     public void EditPlaylistButton(ActionEvent actionEvent) {
