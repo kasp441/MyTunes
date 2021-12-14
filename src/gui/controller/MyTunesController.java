@@ -14,11 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -96,7 +93,7 @@ public class MyTunesController {
     }
 
     public void EditPlaylistButton(ActionEvent actionEvent) throws IOException {
-        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/EditPlaylist.fxml"))); // The FXML path
+        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/NewPlaylist.fxml"))); // The FXML path
         Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
         Stage editPlaylistStage = new Stage();
         editPlaylistStage.setScene(mainWindowScene); // Sets the new scene
@@ -108,7 +105,7 @@ public class MyTunesController {
     }
 
     public void NewPlaylistButton(ActionEvent actionEvent) throws IOException {
-        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/EditPlaylist.fxml"))); // The FXML path
+        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/NewPlaylist.fxml"))); // The FXML path
         Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
         Stage newPlaylistStage = new Stage();
         newPlaylistStage.setScene(mainWindowScene); // Sets the new scene
@@ -237,7 +234,7 @@ public class MyTunesController {
         }
 
     public void NewSongButton (ActionEvent actionEvent) throws IOException {
-        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/gui/view/EditSong.fxml")); // The FXML path
+        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/gui/view/NewSong.fxml")); // The FXML path
         Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
         Stage newSongStage = new Stage();
         newSongStage.setScene(mainWindowScene); // Sets the new scene

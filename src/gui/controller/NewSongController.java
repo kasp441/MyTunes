@@ -23,7 +23,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class EditSongController implements Initializable {
+public class NewSongController implements Initializable {
     public TextField txtFieldTimeEdit;
     public TextField txtFieldFileEdit;
     public TextField txtFieldArtistEdit;
@@ -40,7 +40,7 @@ public class EditSongController implements Initializable {
         genreCombobox.setVisibleRowCount(5);
     }
 
-    public EditSongController() throws IOException {
+    public NewSongController() throws IOException {
         songModel = new SongModel();
     }
 

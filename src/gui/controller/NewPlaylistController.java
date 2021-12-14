@@ -14,14 +14,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class EditPlaylistController {
+public class NewPlaylistController {
 
     public TextField enterPlaylistName;
     public PlaylistModel plm;
     public Button cancelPlaylistId;
     public Button savePlaylistId;
 
-    public EditPlaylistController() throws IOException {
+    public NewPlaylistController() throws IOException {
         plm = new PlaylistModel();
     }
 
