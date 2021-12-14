@@ -18,6 +18,10 @@ public class Song {
         this.destination = destination;
     }
 
+    /**
+     *get methods for song
+     * @return
+     */
     public int getPlaytime() {
         return playtime;
     }
@@ -40,27 +44,6 @@ public class Song {
 
     public String getDestination() {
         return destination;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    @Override
-    public String toString() {
-        return title;
     }
 }
 

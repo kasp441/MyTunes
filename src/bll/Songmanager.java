@@ -21,26 +21,54 @@ public class Songmanager {
 
         }
 
-        public List<Song> getAllSongs(){
-            return songDAO.getAllSongs();
-        }
-        public List<Song> getSearchedSong(List<Song> songList, String keyChar)
-        {
-            return filter.searchSong(songList, keyChar);
-        }
+    /**
+     * gets a list of all songs from database
+     * @return
+     */
+    public List<Song> getAllSongs()
+    {
+        return songDAO.getAllSongs();
+    }
 
+    /**
+     * parses the searching method
+     * @param songList
+     * @param keyChar
+     * @return
+     */
+    public List<Song> getSearchedSong(List<Song> songList, String keyChar)
+    {
+        return filter.searchSong(songList, keyChar);
+    }
+
+    /**
+     * creates a new song in the database
+     * @param title
+     * @param artist
+     * @param genre
+     * @param playtime
+     * @param destination
+     * @throws SQLException
+     */
     public void createSong(String title, String artist, String genre, int playtime, String destination) throws SQLException {
             songDAO.createSong(title, artist, genre, playtime, destination);
     }
 
+    /**
+     * updates the song in the database
+     * @param songUpdate the song containing the new properties
+     * @throws SQLException
+     */
     public void updateSong(Song songUpdate) throws SQLException{
             songDAO.updateSong(songUpdate);
     }
 
+    /**
+     * removes a song form the database
+     * @param songDelete the song containing the properties to be removed
+     */
     public void deleteSong(Song songDelete) {
             songDAO.deleteSong(songDelete);
     }
-
-    public void songUpdate(Song songUpdate) throws SQLException {songDAO.updateSong(songUpdate);}
 
 }

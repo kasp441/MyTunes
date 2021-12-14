@@ -21,6 +21,10 @@ public class Playlist {
         this.totalSongs=0;
     }
 
+    /**
+     *get metods for playlist
+     * @return
+     */
     public List<Song> getPlaylist() {
         return playlist;
     }
@@ -39,15 +43,37 @@ public class Playlist {
         return totallenght;
     }
 
-    public void updateTotallenght()
+    public int getTotalSongs()
     {
-        totallenght = 0;
-        for(Song song : this.playlist)
-        {
-            totallenght += song.getPlaytime();
-        }
+        updateTotalSongs();
+        return totalSongs;
     }
 
+    /**
+     * adds a song to the list of songs in the playlist
+     * @param song
+     */
+    public void addSongToPlaylist(Song song)
+    {
+        playlist.add(song);
+        updateTotallenght();
+        updateTotalSongs();
+    }
+
+    /**
+     * removes a song from the list of songs in the playlist
+     * @param song
+     */
+    public void removeSongFromPlaylist(Song song)
+    {
+        playlist.remove(song);
+        updateTotallenght();
+        updateTotalSongs();
+    }
+
+    /**
+     * refreshes the property @totalSongs
+     */
     public void updateTotalSongs()
     {
         totalSongs = 0;
@@ -57,27 +83,15 @@ public class Playlist {
         }
     }
 
-    public void setPlaylistname(String playlistname) {
-        this.playlistname = playlistname;
-    }
-
-    public int getTotalSongs()
+    /**
+     * refreshes the property @totallengh
+     */
+    public void updateTotallenght()
     {
-        updateTotalSongs();
-        return totalSongs;
-    }
-
-    public void addSongToPlaylist(Song song)
-    {
-        playlist.add(song);
-        updateTotallenght();
-        updateTotalSongs();
-    }
-
-    public void removeSongFromPlaylist(Song song)
-    {
-        playlist.remove(song);
-        updateTotallenght();
-        updateTotalSongs();
+        totallenght = 0;
+        for(Song song : this.playlist)
+        {
+            totallenght += song.getPlaytime();
+        }
     }
 }

@@ -10,6 +10,12 @@ import java.util.List;
 
 public class SearchSong {
 
+    /**
+     * compares songList with a String from query
+     * @param songList
+     * @param query
+     * @return a list of songs containing the String
+     */
     public List<Song> searchSong(List<Song> songList, String query)
     {
         List<Song> result = new ArrayList<>();
@@ -24,11 +30,23 @@ public class SearchSong {
         return result;
     }
 
+    /**
+     * checks to see if the song contains the String
+     * @param song
+     * @param query
+     * @return true if the song contains all the letters
+     */
     private boolean compareToArtist(Song song, String query)
     {
         return song.getArtist().toLowerCase().contains(query.toLowerCase());
     }
 
+    /**
+     * checks to see if the song contains the String
+     * @param song
+     * @param query
+     * @return true if the song contains all the letters
+     */
     private boolean compareToTitle(Song song, String query)
     {
         return song.getTitle().toLowerCase().contains(query.toLowerCase());
