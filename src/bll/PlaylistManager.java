@@ -83,4 +83,7 @@ public class PlaylistManager {
         return playlistDAO.getSongsFromPlaylist(playlist);
     }
 
+    public void moveSongsOnPlaylist(Playlist playlist, int i, int j) throws Exception {
+        playlistDAO.moveSongsOnPlaylist(playlist, i, j);
+    }
 }

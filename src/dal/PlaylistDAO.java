@@ -178,7 +178,7 @@ public class PlaylistDAO {
             ps.execute();
 
             //get resultset of anything with higher position than the deleted song
-            String sql2 = "SELECT * FROM PlaylistSongs WHERE Position >= ? AND playlistId = ?";
+            String sql2 = "SELECT * FROM PlaylistSongs WHERE Position >= ? AND playlistId = ? ORDER BY Position";
             PreparedStatement ps2 = connection.prepareStatement(sql2);
             ps2.setInt(1,index);
             ps2.setInt(2,playlist.getId());
@@ -211,7 +211,7 @@ public class PlaylistDAO {
     public List<Song> getSongsFromPlaylist(Playlist playlist) {
         List<Song> songsOnPlaylist = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
-            String sql = "SELECT * FROM PlaylistSongs WHERE PlaylistId = ?";
+            String sql = "SELECT * FROM PlaylistSongs WHERE PlaylistId = ? ORDER BY Position";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, playlist.getId());
 
@@ -238,6 +238,36 @@ public class PlaylistDAO {
             throwables.printStackTrace();
         }
         return songsOnPlaylist;
+    }
+
+    public void moveSongsOnPlaylist(Playlist playlist, int i, int j) throws Exception {
+        try (Connection c = databaseConnector.getConnection()) {
+            int pId = playlist.getId();
+            int index1 = i;
+            int index2 = j;
+
+            String sql = "UPDATE PlaylistSongs SET Position = -1 WHERE PlaylistId = ? AND Position = ?";
+            String sql1 = "UPDATE PlaylistSongs SET Position = ? WHERE PlaylistId = ? AND Position = ?";
+            String sql2 = "UPDATE PlaylistSongs SET Position = ? WHERE PlaylistId = ? AND Position = -1";
+
+            PreparedStatement ps = c.prepareStatement(sql);
+            PreparedStatement ps1 = c.prepareStatement(sql1);
+            PreparedStatement ps2 = c.prepareStatement(sql2);
+
+            ps.setInt(1, pId);
+            ps.setInt(2, index2);
+
+            ps1.setInt(1, index2);
+            ps1.setInt(2, pId);
+            ps1.setInt(3, index1);
+
+            ps2.setInt(1, index1);
+            ps2.setInt(2, pId);
+
+            ps.executeUpdate();
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+        }
     }
 
     public static void main(String[] args) throws IOException, SQLException {
