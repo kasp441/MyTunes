@@ -254,5 +254,6 @@ public class MyTunesController {
 
     public void handleMouseMove(MouseEvent mouseEvent) {
         updateCurrentlyPlayinglabel();
+        jukebox.setVolume(volume);
     }
 }
