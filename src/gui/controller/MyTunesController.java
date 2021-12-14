@@ -114,12 +114,12 @@ public class MyTunesController {
         TVPlaylist.setItems(playlistModel.getObservablePlaylists());
     }
 
-    public void DownButton(ActionEvent actionEvent) {
-
+    public void DownButton(ActionEvent actionEvent) throws Exception {
+        songMove(1);
     }
 
-    public void UpButton(ActionEvent actionEvent) {
-        
+    public void UpButton(ActionEvent actionEvent) throws Exception {
+        songMove(-1);
     }
 
     public void AddSongToPlaylistButton(ActionEvent actionEvent) throws SQLException {
@@ -256,4 +256,20 @@ public class MyTunesController {
         updateCurrentlyPlayinglabel();
         jukebox.setVolume(volume);
     }
+
+
+    private void songMove (int upOrDown) throws Exception {
+        if (LVSongsOnPlaylist.getSelectionModel().getSelectedItem() != null) {
+        Playlist pl = TVPlaylist.getSelectionModel().getSelectedItem();
+        int i = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex() +1;
+        int j = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex() + (upOrDown) +1;
+        List<Song> ls = LVSongsOnPlaylist.getItems();
+
+        //if (i > 0 || i < ls.size()) {
+            playlistModel.moveSongsOnPlaylist(pl, ls, i, j);
+            LVSongsOnPlaylist.getSelectionModel().clearSelection();
+            //}
+        }
+    }
+
 }
