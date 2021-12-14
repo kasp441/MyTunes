@@ -45,5 +45,10 @@ public class Song {
     public String getDestination() {
         return destination;
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }
 
