@@ -13,6 +13,11 @@ public class SongDAO {
         this.databaseConnector = new DatabaseDAO();
     }
 
+    /**
+     * Creates a list of song objects from the database by making a song object out of every
+     * line in the "Song" table.
+     * @return a list containing every song
+     */
     public List<Song> getAllSongs(){
         ArrayList<Song> allSongs = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
@@ -38,6 +43,18 @@ public class SongDAO {
         return allSongs;
     }
 
+    /**
+     * Creates a song by writing all the input data it to the database except the id.
+     * The id is incremented by the database and returned to the application,
+     * and finally used to create a song object
+     * @param title The title of your song
+     * @param artist The artist of the song
+     * @param genre the Genre of the song
+     * @param playtime For how long the song plays
+     * @param destination Where is the mp3/wav file located
+     * @return A song object
+     * @throws SQLException
+     */
     public Song createSong(String title, String artist,String genre, int playtime, String destination) throws SQLException {
         int newestID = -1;
         String sql = "INSERT INTO Song(Title,Artist,Genre,Playtime,Destination) VALUES (?,?,?,?,?)";
@@ -63,6 +80,11 @@ public class SongDAO {
         return new Song(newestID,title,artist,genre,destination,playtime);
     }
 
+    /**
+     * overrides an existing song with a new song object
+     * @param songUpdate the new song object
+     * @throws SQLException
+     */
     public void updateSong(Song songUpdate) throws SQLException{
         try(Connection connection = databaseConnector.getConnection()){
             String sql = "UPDATE Song SET Title=?, Artist=?, Genre=?, Playtime=?,Destination=? WHERE ID=?;";
@@ -81,6 +103,10 @@ public class SongDAO {
     }
 }
 
+    /**
+     * deletes a song from the "Song" table in the database where the song ID matches
+     * @param songDelete
+     */
     public void deleteSong(Song songDelete) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sql = "DELETE from Song WHERE ID = ?";

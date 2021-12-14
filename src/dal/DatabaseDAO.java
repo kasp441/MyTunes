@@ -14,7 +14,10 @@ public class DatabaseDAO
     {
     private SQLServerDataSource dataSource;
 
-
+        /**
+         * Logs into the database with login information from a text document
+         * @throws IOException
+         */
     public DatabaseDAO() throws IOException {
         Properties props = new Properties();
         props.load(new FileReader("loginInfo.txt"));
@@ -24,7 +27,12 @@ public class DatabaseDAO
         dataSource.setUser(props.getProperty("User"));
         dataSource.setPassword(props.getProperty("Password"));
     }
-    //Creating a connection to the database
+
+        /**
+         * creates a connection with the database
+         * @return a connection
+         * @throws SQLServerException
+         */
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
     }

@@ -17,6 +17,9 @@ public class PlaylistDAO {
         databaseConnector = new DatabaseDAO(); // Creates the connection
     }
 
+    /**
+     * @return All playlists from the database
+     */
     public List<Playlist> getAllPlaylists() {
         List<Playlist> allPlaylists = new ArrayList<>();
 
@@ -40,6 +43,14 @@ public class PlaylistDAO {
         return allPlaylists;
     }
 
+    /**
+     *
+     * @param playlistName input for the name of the new playlist
+     * @return  returns the newly made playlist
+     * @throws SQLException
+     */
+
+
     public Playlist createPlaylist(String playlistName) throws SQLException {
         int newID = -1;
         String sql = "INSERT INTO Playlist(PlaylistName, Totallenght, TotalSongs) VALUES (?, ?, ?)";
@@ -61,6 +72,12 @@ public class PlaylistDAO {
         }
             return new Playlist(newID, playlistName);
     }
+
+    /**
+     * Updates a playlist by overriding the current object with a new one
+     * @param playlistUpdate the new playlist
+     * @throws SQLException
+     */
     public void updatePlaylist(Playlist playlistUpdate) throws SQLException {
         try(Connection connection = databaseConnector.getConnection()) {
             String sql = "UPDATE Playlist SET PlaylistName=?, Totallenght=?, Totalsongs=? WHERE Id = ?;";
@@ -77,6 +94,11 @@ public class PlaylistDAO {
         }
     }
 
+    /**
+     * Deletes a playlist from the database
+     * @param playlistDelete the playlist object to be deleted
+     * @return
+     */
     public Playlist deletePlaylist(Playlist playlistDelete) {
         try (Connection connection = databaseConnector.getConnection()) {
             String sqLang = "DELETE from PlaylistSongs WHERE PlaylistID = ?";
@@ -94,6 +116,12 @@ public class PlaylistDAO {
         return playlistDelete;
     }
 
+    /**
+     * Adds a selected song to a selected playlist by pairing the selected playlist id with the selected song id
+     * @param playlist the selected playlist
+     * @param song the selected song
+     * @throws SQLException
+     */
     public void addSongToPlaylist(Playlist playlist, Song song) throws SQLException {
         //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
         String sql = "INSERT INTO PlaylistSongs(playlistId, songId, Position) VALUES (?, ?,?)";
@@ -111,6 +139,12 @@ public class PlaylistDAO {
         updatePlaylist(playlist);
     }
 
+    /**
+     * Finds the next position for a song on a given playlist
+     * @param playlist they playlist you want a new position for
+     * @return the next position
+     * @throws SQLException
+     */
     public int getNextPosition(Playlist playlist) throws SQLException {
         int nextPos = 0;
         String sql = "SELECT MAX(Position) AS LastPos FROM PlaylistSongs WHERE PlaylistId = ?";
@@ -126,6 +160,13 @@ public class PlaylistDAO {
         return  nextPos;
     }
 
+    /**
+     * Deletes a song from a playlist based on the selected playlists id and songs id and position on the playlist.
+     * After a song has been deleted, any song on the playlist with an id higher than the selected song will be adjusted.
+     * @param playlist the playlist you want to delete from
+     * @param song the song you want to delete
+     * @param index the index on the playlist you want to delete
+     */
     public void deleteSongFromPlaylist(Playlist playlist, Song song, int index) {
         //delete the selected song
         try (Connection connection = databaseConnector.getConnection()) {
@@ -161,6 +202,12 @@ public class PlaylistDAO {
         }
     }
 
+    /**
+     * Selects a result set containing all the songids on a given playlist.
+     * For every line in the result set a new song object will be created from the songid and get added to the return list
+     * @param playlist the playlist you want to find the song on
+     * @return a list of song objects matching the song ids assigned to the given playlist
+     */
     public List<Song> getSongsFromPlaylist(Playlist playlist) {
         List<Song> songsOnPlaylist = new ArrayList<>();
         try (Connection connection = databaseConnector.getConnection()) {
