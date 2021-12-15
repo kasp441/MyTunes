@@ -6,12 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -65,7 +70,32 @@ public class EditSongController implements Initializable {
         stage.close();
     }
 
-    public void handleChoose(ActionEvent actionEvent) {
+    public void handleChoose(ActionEvent actionEvent) throws UnsupportedAudioFileException, IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select file resource");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("MP3 File", "*.mp3"),
+                new FileChooser.ExtensionFilter("WAV File", "*.wav")
+        );
+        Node source = (Node) actionEvent.getSource();
+        File file = fileChooser.showOpenDialog(source.getScene().getWindow());
+        if (file != null) {
+            String filePath = file.getPath();
+            txtFieldFileEdit.setText(filePath.replace("\\","/").split("MyTunes/")[1]);
+            String fileName = file.getName();
+            txtFieldSongTitleEdit.setText(fileName);
+
+            javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
+
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setOnReady(new Runnable() {
+                @Override
+                public void run() {
+                    double songlengt = media.getDuration().toSeconds();
+                    txtFieldTimeEdit.setText((int) songlengt+"");
+                }
+            });
+        }
     }
 
     public void handleMore(ActionEvent actionEvent) {
