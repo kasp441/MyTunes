@@ -53,12 +53,10 @@ public class PlaylistDAO {
 
     public Playlist createPlaylist(String playlistName) throws SQLException {
         int newID = -1;
-        String sql = "INSERT INTO Playlist(PlaylistName, Totallenght, TotalSongs) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Playlist(PlaylistName) VALUES (?)";
         try(Connection connection = databaseConnector.getConnection()) {
             PreparedStatement prepstatement = connection.prepareStatement(sql);
             prepstatement.setString(1, playlistName);
-            prepstatement.setInt(2, 0);
-            prepstatement.setInt(3, 0);
             prepstatement.addBatch();
             prepstatement.executeBatch();
 
@@ -80,12 +78,10 @@ public class PlaylistDAO {
      */
     public void updatePlaylist(Playlist playlistUpdate) throws SQLException {
         try(Connection connection = databaseConnector.getConnection()) {
-            String sql = "UPDATE Playlist SET PlaylistName=?, Totallenght=?, Totalsongs=? WHERE Id = ?;";
+            String sql = "UPDATE Playlist SET PlaylistName=? WHERE Id = ?;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, playlistUpdate.getPlaylistname());
-            ps.setInt(2, playlistUpdate.getTotallenght());
-            ps.setInt(3, playlistUpdate.getTotalSongs());
-            ps.setInt(4, playlistUpdate.getId());
+            ps.setInt(2, playlistUpdate.getId());
             if (ps.executeUpdate() != 1) {
                 throw new Exception("Could not update playlist");
             }
