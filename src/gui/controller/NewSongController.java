@@ -65,8 +65,8 @@ public class NewSongController implements Initializable {
                 mediaPlayer.setOnReady(new Runnable() {
                     @Override
                     public void run() {
-                        double songlengt = media.getDuration().toSeconds();
-                        txtFieldTimeEdit.setText((int) songlengt+"");
+                        double songlength = media.getDuration().toSeconds();
+                        txtFieldTimeEdit.setText((int) songlength+"");
                     }
                 });
         }
