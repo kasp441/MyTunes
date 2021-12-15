@@ -9,6 +9,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -93,14 +94,22 @@ public class MyTunesController {
     }
 
     public void EditPlaylistButton(ActionEvent actionEvent) throws IOException {
-        Parent mainWindowParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/NewPlaylist.fxml"))); // The FXML path
-        Scene mainWindowScene = new Scene(mainWindowParent); // Scene supposed to be viewed
-        Stage editPlaylistStage = new Stage();
-        editPlaylistStage.setScene(mainWindowScene); // Sets the new scene
+        Playlist selectedPlaylist = TVPlaylist.getSelectionModel().getSelectedItem();
+        if (selectedPlaylist != null) {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("/gui/view/EditPlaylist.fxml"));
+            Scene mainWindowScene = null;
 
-        editPlaylistStage.showAndWait();
-
-        // FIXME: 13-12-2021
+            try {
+                mainWindowScene = new Scene(root.load());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            Stage editPlaylistStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            editPlaylistStage.setScene(mainWindowScene);
+            EditPlaylistController editPlaylistController = root.getController();
+            editPlaylistController.setPlaylist(selectedPlaylist);
+            editPlaylistStage.show();
+        }
 
     }
 
@@ -230,8 +239,23 @@ public class MyTunesController {
 
 
     public void EditSongButton(javafx.event.ActionEvent event) throws SQLException, IOException {
-        // FIXME: 13-12-2021
+        Song selectedSong = TVSongs.getSelectionModel().getSelectedItem();
+        if (selectedSong != null) {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("/gui/view/EditSong.fxml"));
+            Scene mainWindowScene = null;
+
+            try {
+                mainWindowScene = new Scene(root.load());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            Stage editSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            editSongStage.setScene(mainWindowScene);
+            EditSongController editSongController = root.getController();
+            editSongController.setSong(selectedSong);
+            editSongStage.show();
         }
+    }
 
     public void NewSongButton (ActionEvent actionEvent) throws IOException {
         Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/gui/view/NewSong.fxml")); // The FXML path
