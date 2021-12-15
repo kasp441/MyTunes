@@ -27,12 +27,9 @@ public class Main extends Application {
             yOffset = primaryStage.getY() - event.getScreenY();
         });
                                             //gør vinduet draggable
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() + xOffset);
-                primaryStage.setY(event.getScreenY() + yOffset);
-            }
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() + xOffset);
+            primaryStage.setY(event.getScreenY() + yOffset);
         });
 
         primaryStage.setResizable(false);
