@@ -43,7 +43,7 @@ public class EditSongController implements Initializable {
 
     public void handleSave(ActionEvent actionEvent) throws SQLException {
 
-        if (!txtFieldTimeEdit.getText().isEmpty() && !genreCombobox.getItems().isEmpty() && !txtFieldSongTitleEdit.getText().isEmpty() && !txtFieldFileEdit.getText().isEmpty() && !txtFieldArtistEdit.getText().isEmpty()) {
+        if (!txtFieldTimeEdit.getText().isEmpty() && genreCombobox.getSelectionModel().getSelectedItem() != null && !txtFieldSongTitleEdit.getText().isEmpty() && !txtFieldFileEdit.getText().isEmpty() && !txtFieldArtistEdit.getText().isEmpty()) {
 
             Song updateSong = new Song(Id,txtFieldSongTitleEdit.getText(),txtFieldArtistEdit.getText(), String.valueOf(genreCombobox.getSelectionModel().getSelectedItem()), txtFieldFileEdit.getText(), Integer.parseInt(txtFieldTimeEdit.getText()));
 
