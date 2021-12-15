@@ -22,7 +22,7 @@ public class SearchSong {
 
         for (Song song : songList)
         {
-            if (compareToTitle(song, query) || compareToArtist(song, query))
+            if (compareToTitle(song, query) || compareToArtist(song, query) || compareToCategory(song, query))
             {
                 result.add(song);
             }
@@ -50,5 +50,10 @@ public class SearchSong {
     private boolean compareToTitle(Song song, String query)
     {
         return song.getTitle().toLowerCase().contains(query.toLowerCase());
+    }
+
+    private boolean compareToCategory(Song song, String query)
+    {
+        return song.getGenre().toLowerCase().contains(query.toLowerCase());
     }
 }
