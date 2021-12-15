@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 
 public class PlaylistModel {
@@ -50,9 +49,5 @@ public class PlaylistModel {
          playlistManager.updatePlaylist(playlist);
     }
 
-    public void moveSongsOnPlaylist(Playlist playlist, List<Song>songsOnPlaylist, int i, int j) throws Exception {
-        Collections.swap(songsOnPlaylist, i-1, j-1);
-        playlistManager.moveSongsOnPlaylist(playlist, i, j);
-    }
 
 }
