@@ -104,11 +104,13 @@ public class MyTunesController {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            Stage editPlaylistStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage editPlaylistStage = new Stage();
             editPlaylistStage.setScene(mainWindowScene);
             EditPlaylistController editPlaylistController = root.getController();
             editPlaylistController.setPlaylist(selectedPlaylist);
-            editPlaylistStage.show();
+            editPlaylistStage.showAndWait();
+            TVPlaylist.getItems().clear();
+            TVPlaylist.setItems(playlistModel.getObservablePlaylists());
         }
 
     }
