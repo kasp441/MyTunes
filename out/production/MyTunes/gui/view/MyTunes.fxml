@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.AmbientLight?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -8,28 +9,81 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseMoved="#handleMouseMove" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
+<AnchorPane onMouseMoved="#handleMouseMove" prefHeight="570.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MyTunesController">
    <children>
-      <Slider fx:id="volumeSlider" layoutX="106.0" layoutY="88.0" AnchorPane.leftAnchor="106.0" AnchorPane.topAnchor="88.0" />
+      <ImageView fitHeight="570.0" fitWidth="1024.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="https://i.ibb.co/k8R57hV/Another-background1.jpg" />
+         </image></ImageView>
+      <Slider fx:id="volumeSlider" layoutX="106.0" layoutY="88.0" AnchorPane.leftAnchor="106.0" AnchorPane.topAnchor="88.0">
+         <effect>
+            <Lighting diffuseConstant="1.29" specularConstant="0.07" specularExponent="6.66" surfaceScale="0.0">
+               <bumpInput>
+                  <InnerShadow choke="0.63" height="146.55" radius="72.89500000000001" width="147.03" />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="36.72" elevation="49.0">
+                     <color>
+                        <Color red="1.0" green="0.8865740895271301" blue="0.5462962985038757" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Slider>
       <TableView fx:id="TVPlaylist" layoutX="14.0" layoutY="143.0" onMouseClicked="#HandleSpecificPlaylistClicked" prefHeight="351.0" prefWidth="225.0" AnchorPane.leftAnchor="20.0">
         <columns>
           <TableColumn fx:id="playlistName" prefWidth="92.0" text="Name" />
           <TableColumn fx:id="playlistSongCount" prefWidth="58.0" resizable="false" text="Songs" />
             <TableColumn fx:id="playlistTime" prefWidth="59.0" resizable="false" text="Time" />
         </columns>
+         <effect>
+            <DropShadow height="10.0" radius="4.5" width="10.0" />
+         </effect>
       </TableView>
-      <Button layoutX="194.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeletePlaylistButton" text="Delete" />
-      <Button layoutX="71.0" layoutY="504.0" mnemonicParsing="false" onAction="#EditPlaylistButton" text="Edit" />
-      <Button layoutX="15.0" layoutY="504.0" mnemonicParsing="false" onAction="#NewPlaylistButton" text="New" AnchorPane.leftAnchor="20.0" />
-      <Button layoutX="304.0" layoutY="504.0" mnemonicParsing="false" onAction="#DownButton" text="Down" />
-      <Button layoutX="260.0" layoutY="504.0" mnemonicParsing="false" onAction="#UpButton" text="Up" />
-      <ListView fx:id="LVSongsOnPlaylist" layoutX="260.0" layoutY="143.0" onMouseClicked="#handleLVSongsOnPlaylistClicked" prefHeight="351.0" prefWidth="174.0" AnchorPane.leftAnchor="260.0" />
+      <Button layoutX="194.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeletePlaylistButton" text="Delete">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button layoutX="71.0" layoutY="504.0" mnemonicParsing="false" onAction="#EditPlaylistButton" text="Edit">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button layoutX="15.0" layoutY="504.0" mnemonicParsing="false" onAction="#NewPlaylistButton" text="New" AnchorPane.leftAnchor="20.0">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button layoutX="304.0" layoutY="504.0" mnemonicParsing="false" onAction="#DownButton" text="Down">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button layoutX="260.0" layoutY="504.0" mnemonicParsing="false" onAction="#UpButton" text="Up">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <ListView fx:id="LVSongsOnPlaylist" layoutX="260.0" layoutY="143.0" onMouseClicked="#handleLVSongsOnPlaylistClicked" prefHeight="351.0" prefWidth="174.0" AnchorPane.leftAnchor="260.0">
+         <effect>
+            <DropShadow height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </ListView>
       <TableView fx:id="TVSongs" layoutX="506.0" layoutY="143.0" onMouseClicked="#getClickedSong" prefHeight="351.0" prefWidth="371.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="20.0">
         <columns>
           <TableColumn fx:id="songTitle" prefWidth="148.0" text="Title" />
@@ -37,38 +91,87 @@
             <TableColumn fx:id="songCategory" prefWidth="112.0" text="Category" />
             <TableColumn fx:id="songTime" prefWidth="85.0" resizable="false" text="Time" />
         </columns>
+         <effect>
+            <DropShadow height="10.0" radius="4.5" width="10.0" />
+         </effect>
       </TableView>
-      <Label layoutX="259.0" layoutY="121.0" text="Songs on playlist" AnchorPane.leftAnchor="260.0" />
-      <TextField fx:id="filterInput" layoutX="688.0" layoutY="109.0" />
-      <Button layoutX="443.0" layoutY="143.0" mnemonicParsing="false" onAction="#AddSongToPlaylistButton" text="Add song" />
-      <Button layoutX="383.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeleteSongFromPlaylistButton" text="Delete" />
-      <Label layoutX="14.0" layoutY="121.0" text="Playlists" AnchorPane.leftAnchor="20.0" />
-      <Label fx:id="currentlyPlayingLabel" layoutX="364.0" layoutY="58.0" prefHeight="25.0" prefWidth="312.0" text="(none) ... is playing" AnchorPane.leftAnchor="364.0" AnchorPane.rightAnchor="348.0">
+      <Label layoutX="259.0" layoutY="121.0" text="Songs on playlist" AnchorPane.leftAnchor="260.0">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="956.0" layoutY="23.0" mnemonicParsing="false" onAction="#CloseApplicationButton" prefHeight="29.0" prefWidth="50.0" text="Close" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="17.0" />
-      <Button layoutX="829.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeleteSongButton" text="Delete" AnchorPane.rightAnchor="20.0" />
-      <Button layoutX="572.0" layoutY="504.0" mnemonicParsing="false" onAction="#EditSongButton" text="Edit" />
-      <Button layoutX="520.0" layoutY="504.0" mnemonicParsing="false" onAction="#NewSongButton" text="New" AnchorPane.leftAnchor="520.0" />
-      <Label layoutX="504.0" layoutY="121.0" text="Songs" AnchorPane.leftAnchor="520.0" />
-      <Label layoutX="644.0" layoutY="113.0" text="Search:" />
+      <TextField fx:id="filterInput" layoutX="688.0" layoutY="109.0">
+         <effect>
+            <DropShadow height="12.75" radius="5.1875" width="10.0" />
+         </effect>
+      </TextField>
+      <Button layoutX="443.0" layoutY="143.0" mnemonicParsing="false" onAction="#AddSongToPlaylistButton" text="Add song">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect></Button>
+      <Button layoutX="383.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeleteSongFromPlaylistButton" text="Delete">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Label layoutX="14.0" layoutY="121.0" text="Playlists" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="currentlyPlayingLabel" layoutX="364.0" layoutY="58.0" prefHeight="25.0" prefWidth="312.0" text="(none) ... is playing" AnchorPane.leftAnchor="364.0" AnchorPane.rightAnchor="348.0">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="956.0" layoutY="23.0" mnemonicParsing="false" onAction="#CloseApplicationButton" prefHeight="29.0" prefWidth="50.0" text="Close" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="17.0">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button layoutX="829.0" layoutY="504.0" mnemonicParsing="false" onAction="#DeleteSongButton" text="Delete" AnchorPane.rightAnchor="20.0">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button layoutX="572.0" layoutY="504.0" mnemonicParsing="false" onAction="#EditSongButton" text="Edit">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Button layoutX="520.0" layoutY="504.0" mnemonicParsing="false" onAction="#NewSongButton" text="New" AnchorPane.leftAnchor="520.0">
+         <effect>
+            <DropShadow height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+         </effect>
+      </Button>
+      <Label layoutX="504.0" layoutY="121.0" text="Songs" AnchorPane.leftAnchor="520.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="113.0" text="Search:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
       <AmbientLight color="CHARTREUSE" lightOn="true" />
-      <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="206.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="skipButton.png" />
-         </image>
+      <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="215.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <DropShadow height="29.0" radius="14.0" width="29.0" />
+         </effect>
+         <Image url="https://i.ibb.co/QXDD9L6/image.png" />
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="150.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="playPauseButton.png" />
-         </image>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="150.0" layoutY="32.0" pickOnBounds="true">
+         <effect>
+            <DropShadow height="21.29" radius="12.0725" width="29.0" />
+         </effect>
+         <Image url="https://i.ibb.co/jZQ8kK5/play-Pause-Button2.png" />
       </ImageView>
-      <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="102.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="backButton.png" />
-         </image>
+      <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="92.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <DropShadow height="29.0" radius="14.0" width="29.0" />
+         </effect>
+         <Image url="https://i.ibb.co/8MFCDXq/image.png" />
       </ImageView>
       <Button layoutX="155.0" layoutY="34.0" mnemonicParsing="false" onAction="#PlayPauseButton" opacity="0.0" prefHeight="44.0" prefWidth="42.0" text="Play / Pause" />
       <Button layoutX="101.0" layoutY="39.0" mnemonicParsing="false" onAction="#BackButton" opacity="0.0" prefHeight="39.0" prefWidth="42.0" text="Back" />
