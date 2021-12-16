@@ -42,5 +42,4 @@ public class SongModel {
     public void createSong(String title, String artist, String genre, int playtime, String destination) throws SQLException {
         songmanager.createSong(title, artist, genre, playtime, destination);
     }
-
 }

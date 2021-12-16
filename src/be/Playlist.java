@@ -74,7 +74,7 @@ public class Playlist {
     /**
      * refreshes the property @totalSongs
      */
-    public void updateTotalSongs()
+    private void updateTotalSongs()
     {
         totalSongs = 0;
         for(Song song : this.playlist)
@@ -86,7 +86,7 @@ public class Playlist {
     /**
      * refreshes the property @totallengh
      */
-    public void updateTotallenght()
+    private void updateTotallenght()
     {
         totallenght = 0;
         for(Song song : this.playlist)

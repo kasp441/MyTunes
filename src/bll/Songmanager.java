@@ -15,7 +15,6 @@ public class Songmanager {
         public Songmanager() throws IOException {
             songDAO = new SongDAO();
             filter = new SearchSong();
-
         }
 
     /**
@@ -43,7 +42,6 @@ public class Songmanager {
      * @param title
      * @param artist
      * @param genre
-     * @param playtime
      * @param destination
      * @throws SQLException
      */
