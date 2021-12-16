@@ -1,7 +1,6 @@
 package gui.controller;
 
 import be.Playlist;
-import be.Song;
 import gui.model.PlaylistModel;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;

@@ -9,7 +9,6 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -66,7 +65,7 @@ public class MyTunesController {
         //Song search
         filterInput.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
-                songModel.searchSwitch(newValue);
+                songModel.search(newValue);
             } catch (Exception e) {
                 e.printStackTrace();
             }

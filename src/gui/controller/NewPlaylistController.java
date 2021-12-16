@@ -1,12 +1,7 @@
 package gui.controller;
 
-import be.Playlist;
 import gui.model.PlaylistModel;
-import gui.model.SongModel;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;

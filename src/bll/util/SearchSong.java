@@ -1,4 +1,4 @@
-package bll;
+package bll.util;
 
 import be.Song;
 import javafx.beans.InvalidationListener;
@@ -16,7 +16,7 @@ public class SearchSong {
      * @param query
      * @return a list of songs containing the String
      */
-    public List<Song> searchSong(List<Song> songList, String query)
+    public List<Song> search(List<Song> songList, String query)
     {
         List<Song> result = new ArrayList<>();
 

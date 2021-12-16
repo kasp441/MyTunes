@@ -1,12 +1,9 @@
 package gui.model;
 
-import be.Playlist;
 import be.Song;
-import bll.PlaylistManager;
 import bll.Songmanager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,10 +25,10 @@ public class SongModel {
         return songsToBeViewed;
     }
 
-    public void searchSwitch(String keyChar)
+    public void search(String keyChar)
     {
         List<Song> allSongs = songmanager.getAllSongs();
-        List<Song> result = songmanager.getSearchedSong(allSongs, keyChar);
+        List<Song> result = songmanager.getSearchedSongs(allSongs, keyChar);
         songsToBeViewed.clear();
         songsToBeViewed.addAll(result);
     }

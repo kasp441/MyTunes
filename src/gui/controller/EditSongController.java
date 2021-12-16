@@ -61,8 +61,6 @@ public class EditSongController implements Initializable {
             alert.setTitle("Warning");
             alert.setHeaderText("fill out all textfields");
             alert.showAndWait();        }
-
-
     }
 
     public void handleCancel(ActionEvent actionEvent) {
@@ -98,10 +96,6 @@ public class EditSongController implements Initializable {
         }
     }
 
-    public void handleMore(ActionEvent actionEvent) {
-    }
-
-
     public void setSong(Song song)
     {
         Id = song.getID();
@@ -111,6 +105,4 @@ public class EditSongController implements Initializable {
         txtFieldFileEdit.setText(song.getDestination());
         txtFieldTimeEdit.setText(Integer.toString(song.getPlaytime()));
     }
-
-
 }

@@ -2,7 +2,6 @@ package dal;
 
 import be.Playlist;
 import be.Song;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;
@@ -264,11 +263,5 @@ public class PlaylistDAO {
             ps1.executeUpdate();
             ps2.executeUpdate();
         }
-    }
-
-    public static void main(String[] args) throws IOException, SQLException {
-        PlaylistDAO playlistDAO = new PlaylistDAO();
-        Playlist playlist = playlistDAO.getAllPlaylists().get(0);
-        System.out.println(playlistDAO.getNextPosition(playlist));
     }
 }
