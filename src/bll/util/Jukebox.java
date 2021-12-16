@@ -23,6 +23,9 @@ MediaPlayer mediaPlayer;
         songList = new ArrayList<>();
     }
 
+    /**
+     sets the playlist of songs
+     */
     public void setSongList(List<Song> inputSongs){
         songList = inputSongs;
     }
@@ -42,6 +45,9 @@ MediaPlayer mediaPlayer;
         mediaPlayer.play();
     }
 
+    /**
+     * If a mediaplayer exists, this method will pause or start the current mediaplayer
+     */
     public void playPause(){
         if (mediaPlayer != null){
             if (!playing){
@@ -53,6 +59,10 @@ MediaPlayer mediaPlayer;
 
     }
 
+    /**
+     * Assigns
+     * @param song the song you want to play
+     */
     public void setCurrentSong(Song song){
         File file = new File(song.getDestination());
         media = new Media(file.toURI().toString());
@@ -61,42 +71,61 @@ MediaPlayer mediaPlayer;
         mediaPlayer.setOnEndOfMedia(this::skipSong);
     }
 
+    /**
+     *
+     * If a song is currently chosen, skipSong will stop the music, go to the next song in the current songlist
+     * and start playing that song.
+     */
     public void skipSong(){
-        if (currentSongIndex < songList.size()-1){
-            currentSongIndex++;
-            stopMedia();
-            Song song = songList.get(currentSongIndex);
-            setCurrentSong(song);
-            playMedia();
-        }
-        else{
-            currentSongIndex =0;
-            stopMedia();
-            Song song = songList.get(currentSongIndex);
-            setCurrentSong(song);
-            playMedia();
+        if (mediaPlayer != null){
+            if (currentSongIndex < songList.size()-1){
+                currentSongIndex++;
+                stopMedia();
+                Song song = songList.get(currentSongIndex);
+                setCurrentSong(song);
+                playMedia();
+            }
+            else{
+                currentSongIndex =0;
+                stopMedia();
+                Song song = songList.get(currentSongIndex);
+                setCurrentSong(song);
+                playMedia();
+            }
         }
     }
 
+    /**
+     *
+     * If a song is currently chosen, backSong will stop the music, go to the previous song in the current songlist
+     * and start playing that song.
+     */
     public void backSong(){
-        if (currentSongIndex > 0){
-            currentSongIndex--;
-            stopMedia();
-            Song song = songList.get(currentSongIndex);
-            setCurrentSong(song);
-            playMedia();
-        }
-        else{
-            currentSongIndex =songList.size()-1;
-            stopMedia();
-            Song song = songList.get(currentSongIndex);
-            setCurrentSong(song);
-            playMedia();
+        if (mediaPlayer != null){
+            if (currentSongIndex > 0){
+                currentSongIndex--;
+                stopMedia();
+                Song song = songList.get(currentSongIndex);
+                setCurrentSong(song);
+                playMedia();
+            }
+            else{
+                currentSongIndex =songList.size()-1;
+                stopMedia();
+                Song song = songList.get(currentSongIndex);
+                setCurrentSong(song);
+                playMedia();
+            }
         }
     }
     public boolean isPlaying(){
         return playing;
     }
+
+    /**
+     * Finds the title of the song that is currently playing, or default text if nothing is playing
+     * @return
+     */
     public String getCurrentSongTitle(){
         if (playing){
             return currentSong.getTitle() + " is playing";
@@ -118,6 +147,9 @@ MediaPlayer mediaPlayer;
         return songList;
     }
 
+    /**
+        Will set the volume of the current mediaplayer
+     */
     public void setVolume(double volume){
         if (mediaPlayer != null){
             mediaPlayer.setVolume(volume);

@@ -73,6 +73,7 @@ public class MyTunesController {
 
         //Volume slider
         volumeSlider.setValue(25); //starting volume
+        volume = volumeSlider.getValue() / 100;
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -125,11 +126,15 @@ public class MyTunesController {
     }
 
     public void DownButton(ActionEvent actionEvent) throws Exception {
-        songMove(1);
+        if (LVSongsOnPlaylist.getSelectionModel().getSelectedIndex()+1 != LVSongsOnPlaylist.getItems().size()){
+            songMove(1);
+        }
     }
 
     public void UpButton(ActionEvent actionEvent) throws Exception {
-        songMove(-1);
+        if (LVSongsOnPlaylist.getSelectionModel().getSelectedIndex() !=0){
+            songMove(-1);
+        }
     }
 
     public void AddSongToPlaylistButton(ActionEvent actionEvent) throws SQLException {
@@ -189,7 +194,7 @@ public class MyTunesController {
         }
 
         jukebox.playPause();
-        jukebox.setVolume(volumeSlider.getValue()/100);
+        jukebox.setVolume(volume);
         updateCurrentlyPlayinglabel();
     }
 
@@ -289,13 +294,13 @@ public class MyTunesController {
         if (LVSongsOnPlaylist.getSelectionModel().getSelectedItem() != null) {
         Playlist pl = TVPlaylist.getSelectionModel().getSelectedItem();
         int i = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex() +1;
-        int j = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex() + (upOrDown) +1;
+        int j = LVSongsOnPlaylist.getSelectionModel().getSelectedIndex() +1 + (upOrDown) ;
         List<Song> ls = LVSongsOnPlaylist.getItems();
 
-        //if (i > 0 || i < ls.size()) {
-            playlistModel.moveSongsOnPlaylist(pl, ls, i, j);
-            LVSongsOnPlaylist.getSelectionModel().clearSelection();
-            //}
+
+        playlistModel.moveSongsOnPlaylist(pl, ls, i, j);
+        LVSongsOnPlaylist.getSelectionModel().clearSelection();
+
         }
     }
 
