@@ -4,6 +4,7 @@ import be.Song;
 import gui.model.SongModel;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,13 +21,20 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class NewSongController implements Initializable {
-    public TextField txtFieldTimeEdit;
-    public TextField txtFieldFileEdit;
-    public TextField txtFieldArtistEdit;
-    public TextField txtFieldSongTitleEdit;
-    public Button saveButton;
-    public ComboBox genreCombobox;
-    public Button cancelButton;
+    @FXML
+    private TextField txtFieldTimeEdit;
+    @FXML
+    private TextField txtFieldFileEdit;
+    @FXML
+    private TextField txtFieldArtistEdit;
+    @FXML
+    private TextField txtFieldSongTitleEdit;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private ComboBox genreCombobox;
+    @FXML
+    private Button cancelButton;
     private SongModel songModel;
 
     @Override

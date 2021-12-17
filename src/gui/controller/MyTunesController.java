@@ -8,6 +8,7 @@ import gui.model.PlaylistModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,18 +26,30 @@ import java.util.Optional;
 
 public class MyTunesController {
 
-    public TableColumn<Song, String> songTitle;
-    public TableColumn<Song, String> songArtist;
-    public TableColumn<Song, String> songCategory;
-    public TableColumn<Song, Integer> songTime;
-    public Label currentlyPlayingLabel;
-    public TextField filterInput;
-    public Slider volumeSlider;
-    public TableView<be.Playlist> TVPlaylist;
-    public TableColumn<Playlist, String> playlistName;
-    public TableColumn<Playlist, Integer> playlistSongCount;
-    public TableColumn<Playlist, Integer> playlistTime;
-    public ListView<Song> LVSongsOnPlaylist;
+    @FXML
+    private TableColumn<Song, String> songTitle;
+    @FXML
+    private TableColumn<Song, String> songArtist;
+    @FXML
+    private TableColumn<Song, String> songCategory;
+    @FXML
+    private TableColumn<Song, Integer> songTime;
+    @FXML
+    private Label currentlyPlayingLabel;
+    @FXML
+    private TextField filterInput;
+    @FXML
+    private Slider volumeSlider;
+    @FXML
+    private TableView<be.Playlist> TVPlaylist;
+    @FXML
+    private TableColumn<Playlist, String> playlistName;
+    @FXML
+    private TableColumn<Playlist, Integer> playlistSongCount;
+    @FXML
+    private TableColumn<Playlist, Integer> playlistTime;
+    @FXML
+    private ListView<Song> LVSongsOnPlaylist;
     private SongModel songModel;
     private PlaylistModel playlistModel;
     private Jukebox jukebox;

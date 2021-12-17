@@ -3,6 +3,7 @@ package gui.controller;
 import be.Playlist;
 import gui.model.PlaylistModel;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,9 +14,11 @@ import java.sql.SQLException;
 
 public class EditPlaylistController {
 
-    public TextField enterPlaylistName;
+    @FXML
+    private TextField enterPlaylistName;
     public Button cancelPlaylistButton;
-    public Button savePlaylistButton;
+    @FXML
+    private Button savePlaylistButton;
     public PlaylistModel plm;
     private int Id;
 

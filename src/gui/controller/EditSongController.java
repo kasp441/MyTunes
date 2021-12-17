@@ -25,12 +25,18 @@ import java.util.ResourceBundle;
 public class EditSongController implements Initializable {
     @FXML
     private TextField txtFieldSongTitleEdit;
-    public TextField txtFieldArtistEdit;
-    public TextField txtFieldTimeEdit;
-    public TextField txtFieldFileEdit;
-    public Button cancelButton;
-    public Button saveButton;
-    public ComboBox genreCombobox;
+    @FXML
+    private TextField txtFieldArtistEdit;
+    @FXML
+    private TextField txtFieldTimeEdit;
+    @FXML
+    private TextField txtFieldFileEdit;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private ComboBox genreCombobox;
     private SongModel songModel;
     private int Id;
 

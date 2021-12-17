@@ -2,6 +2,7 @@ package gui.controller;
 
 import gui.model.PlaylistModel;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -11,10 +12,14 @@ import java.sql.SQLException;
 
 public class NewPlaylistController {
 
-    public TextField enterPlaylistName;
-    public PlaylistModel plm;
+    @FXML
+    private TextField enterPlaylistName;
+    @FXML
+    private PlaylistModel plm;
+
     public Button cancelPlaylistId;
-    public Button savePlaylistId;
+    @FXML
+    private Button savePlaylistId;
 
     public NewPlaylistController() throws IOException {
         plm = new PlaylistModel();
