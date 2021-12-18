@@ -52,14 +52,16 @@ public class EditSongController implements Initializable {
         songModel = new SongModel();
     }
 
+    /**
+     * Event handler for save button. Updates the database with the new song info
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void handleSave(ActionEvent actionEvent) throws SQLException {
 
         if (!txtFieldTimeEdit.getText().isEmpty() && genreCombobox.getSelectionModel().getSelectedItem() != null && !txtFieldSongTitleEdit.getText().isEmpty() && !txtFieldFileEdit.getText().isEmpty() && !txtFieldArtistEdit.getText().isEmpty()) {
-
             Song updateSong = new Song(Id,txtFieldSongTitleEdit.getText(),txtFieldArtistEdit.getText(), String.valueOf(genreCombobox.getSelectionModel().getSelectedItem()), txtFieldFileEdit.getText(), Integer.parseInt(txtFieldTimeEdit.getText()));
-
             songModel.updateSong(updateSong);
-
             Stage stage = (Stage) saveButton.getScene().getWindow();
             stage.close();
         } else {
@@ -69,11 +71,22 @@ public class EditSongController implements Initializable {
             alert.showAndWait();        }
     }
 
+    /**
+     * event handler for cancel button. Closes the window
+     * @param actionEvent
+     */
     public void handleCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Event handler for choose button. Opens a filechooser window and autofills textfield with info from the
+     * chosen file.
+     * @param actionEvent
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     */
     public void handleChoose(ActionEvent actionEvent) throws UnsupportedAudioFileException, IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select file resource");
@@ -88,9 +101,7 @@ public class EditSongController implements Initializable {
             txtFieldFileEdit.setText(filePath.replace("\\","/").split("MyTunes/")[1]);
             String fileName = file.getName();
             txtFieldSongTitleEdit.setText(fileName);
-
             javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
-
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setOnReady(new Runnable() {
                 @Override
@@ -102,6 +113,10 @@ public class EditSongController implements Initializable {
         }
     }
 
+    /**
+     * updates the chosen song object with the new info
+     * @param song
+     */
     public void setSong(Song song)
     {
         Id = song.getID();

@@ -25,16 +25,28 @@ public class NewPlaylistController {
         plm = new PlaylistModel();
     }
 
+    /**
+     * Event handler for cancel button. Closes the window
+     * @param actionEvent
+     */
     public void cancelPlaylistButton(ActionEvent actionEvent) {
         closeWindow();
     }
 
+    /**
+     * Creates a new playlist from the input in the textbox
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void savePlaylistButton(ActionEvent actionEvent) throws SQLException {
         plm.createPlaylist(enterPlaylistName.getText());
         closeWindow();
     }
 
-    public void closeWindow() {                 //kunne laves i en utility class - evt. andet duplicate code?
+    /**
+     * closes the window
+     */
+    public void closeWindow() {
         Stage stage = (Stage) savePlaylistId.getScene().getWindow();
         stage.close();
     }

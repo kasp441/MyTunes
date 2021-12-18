@@ -25,9 +25,19 @@ public class EditPlaylistController {
     public EditPlaylistController() throws IOException {
         plm = new PlaylistModel();
     }
+
+    /**
+     * event handler for cancel button. closes the window
+     * @param actionEvent
+     */
     public void cancelPlaylistButton(ActionEvent actionEvent) { closeWindow();
     }
 
+    /**
+     * Event handler for save button. Updates the title of the chosen playlist
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void savePlaylistButton(ActionEvent actionEvent) throws SQLException {
         if (!enterPlaylistName.getText().isEmpty()) {
             Playlist playlistUpdate = new Playlist(Id, enterPlaylistName.getText());
@@ -50,7 +60,10 @@ public class EditPlaylistController {
         enterPlaylistName.setText(playlist.getPlaylistname());
     }
 
-    public void closeWindow() {                 //kunne laves i en utility class - evt. andet duplicate code?
+    /**
+     * closes current window
+     */
+    public void closeWindow() {
         Stage stage = (Stage) savePlaylistButton.getScene().getWindow();
         stage.close();
     }

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="285.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.NewSongController">
+<AnchorPane prefHeight="285.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.NewSongController">
    <children>
       <Label layoutX="68.0" layoutY="65.0" text="Title:" AnchorPane.rightAnchor="375.0" AnchorPane.topAnchor="30.0" />
       <Label layoutX="68.0" layoutY="110.0" text="Artist:" AnchorPane.rightAnchor="375.0" AnchorPane.topAnchor="70.0" />
@@ -15,7 +15,6 @@
       <Label layoutX="74.0" layoutY="273.0" text="File:" AnchorPane.rightAnchor="375.0" AnchorPane.topAnchor="190.0" />
       <TextField fx:id="txtFieldSongTitleEdit" layoutX="90.0" layoutY="35.0" prefWidth="260.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="35.0" />
       <TextField fx:id="txtFieldArtistEdit" layoutX="143.0" layoutY="106.0" prefWidth="260.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="70.0" />
-      <Button layoutX="311.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleMore" prefHeight="25.0" prefWidth="65.0" text="More..." AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="110.0" />
       <TextField fx:id="txtFieldTimeEdit" editable="false" layoutX="143.0" layoutY="201.0" prefWidth="110.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="150.0" />
       <TextField fx:id="txtFieldFileEdit" editable="false" layoutX="143.0" layoutY="269.0" prefWidth="260.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="190.0" />
       <Button layoutX="311.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleChoose" text="Choose..." AnchorPane.leftAnchor="365.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="190.0" />

@@ -44,7 +44,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Slider>
-      <TableView fx:id="TVPlaylist" layoutX="14.0" layoutY="143.0" onMouseClicked="#HandleSpecificPlaylistClicked" prefHeight="351.0" prefWidth="225.0" AnchorPane.leftAnchor="20.0">
+      <TableView fx:id="TVPlaylist" layoutX="14.0" layoutY="143.0" onMouseClicked="#HandleTVPlaylistClicked" prefHeight="351.0" prefWidth="225.0" AnchorPane.leftAnchor="20.0">
         <columns>
           <TableColumn fx:id="playlistName" prefWidth="92.0" text="Name" />
           <TableColumn fx:id="playlistSongCount" prefWidth="58.0" resizable="false" text="Songs" />
@@ -84,7 +84,7 @@
             <DropShadow height="10.0" radius="4.5" width="10.0" />
          </effect>
       </ListView>
-      <TableView fx:id="TVSongs" layoutX="506.0" layoutY="143.0" onMouseClicked="#getClickedSong" prefHeight="351.0" prefWidth="371.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="20.0">
+      <TableView fx:id="TVSongs" layoutX="506.0" layoutY="143.0" onMouseClicked="#handleClickTVSongs" prefHeight="351.0" prefWidth="371.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="20.0">
         <columns>
           <TableColumn fx:id="songTitle" prefWidth="148.0" text="Title" />
           <TableColumn fx:id="songArtist" prefWidth="123.0" text="Artist" />

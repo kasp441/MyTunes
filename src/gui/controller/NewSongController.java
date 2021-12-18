@@ -37,10 +37,14 @@ public class NewSongController implements Initializable {
     private Button cancelButton;
     private SongModel songModel;
 
+    /**
+     * Sets the contents of the combobox
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        genreCombobox.setItems(FXCollections.observableArrayList("Rock", "Jazz", "Metal", "Rap", "Punk", "Pop", "Techno", "Country", "Blues", "House"));
+        genreCombobox.setItems(FXCollections.observableArrayList("Rock", "Jazz", "Metal", "Rap", "Punk", "Pop", "Techno", "Country", "Blues", "House","Lofi", "Melodic"));
         genreCombobox.setVisibleRowCount(5);
     }
 
@@ -48,6 +52,12 @@ public class NewSongController implements Initializable {
         songModel = new SongModel();
     }
 
+    /**
+     * Event handler for choose button. Opens filechooser window and autofills info from the song.
+     * @param actionEvent
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     */
     public void handleChoose(ActionEvent actionEvent) throws UnsupportedAudioFileException, IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select file resource");
@@ -76,6 +86,11 @@ public class NewSongController implements Initializable {
         }
     }
 
+    /**
+     * Event handler for save button. saves the new song to the database and closes the window
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void handleSave(ActionEvent actionEvent) throws SQLException {
         if (!txtFieldTimeEdit.getText().isEmpty() && genreCombobox.getSelectionModel().getSelectedItem() != null && !txtFieldSongTitleEdit.getText().isEmpty() && !txtFieldFileEdit.getText().isEmpty() && !txtFieldArtistEdit.getText().isEmpty()) {
             songModel.createSong(txtFieldSongTitleEdit.getText(), txtFieldArtistEdit.getText(), String.valueOf(genreCombobox.getSelectionModel().getSelectedItem()), Integer.parseInt(txtFieldTimeEdit.getText()), txtFieldFileEdit.getText());
@@ -88,26 +103,12 @@ public class NewSongController implements Initializable {
             alert.showAndWait();        }
     }
 
+    /**
+     * Event handler for cancel button. Closes the window
+     * @param actionEvent
+     */
     public void handleCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
-    }
-
-    public void handleMore(ActionEvent actionEvent) {
-        Stage newStage = new Stage();
-        VBox comp = new VBox();
-
-        Label labelField = new Label("Please enter your genre below");
-        TextField genreField = new TextField("");
-        Button buttonDone = new Button("Done");
-        comp.getChildren().add(labelField);
-        comp.getChildren().add(genreField);
-        comp.getChildren().add(buttonDone);
-
-        Scene stageScene = new Scene(comp, 300, 75);
-        newStage.setScene(stageScene);
-        newStage.showAndWait();
-
-
     }
 }
