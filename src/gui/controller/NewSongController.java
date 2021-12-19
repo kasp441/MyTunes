@@ -44,7 +44,7 @@ public class NewSongController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        genreCombobox.setItems(FXCollections.observableArrayList("Rock", "Jazz", "Metal", "Rap", "Punk", "Pop", "Techno", "Country", "Blues", "House","Lofi", "Melodic"));
+        genreCombobox.setItems(FXCollections.observableArrayList("Rock", "Jazz", "Metal", "Rap", "Punk", "Pop", "Techno", "Country", "Blues", "House","Lofi", "Melodic", "Indie"));
         genreCombobox.setVisibleRowCount(5);
     }
 
